@@ -16,7 +16,7 @@ import {
   XMarkIcon
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import { Rocket01Icon, HotdogIcon, FlowerPotIcon } from 'hugeicons-react'
+import { Rocket01Icon, HotdogIcon, FlowerPotIcon, InstagramIcon, Facebook02Icon, ShoppingCart01Icon } from 'hugeicons-react'
 
 const products = [
   { name: 'Figuras de colección', description: 'Podrás alegrar a tu niño interior.', href: '#', icon: Rocket01Icon },
@@ -112,9 +112,12 @@ export default function Navbar () {
             Quienes Somos
           </a>
         </PopoverGroup>
-        <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
-          <a href='#' className='text-sm font-semibold leading-6 text-gray-900'>
-            Iniciar Sesión <span aria-hidden='true'>&rarr;</span>
+        <div className='hidden lg:flex lg:flex-1 lg:justify-end gap-5'>
+          <a href='https://www.instagram.com/jet.impresiones3d/' target='_blank'>
+            <InstagramIcon />
+          </a>
+          <a href='#'>
+            <ShoppingCart01Icon />
           </a>
         </div>
       </nav>
@@ -179,13 +182,19 @@ export default function Navbar () {
                 >
                   Quienes Somos
                 </a>
-              </div>
-              <div className='py-6'>
                 <a
                   href='#'
-                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
+                  className='-mx-3 flex gap-2 items-center rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
                 >
-                  Log in
+                  <InstagramIcon />
+                  Visitanos en Instagram
+                </a>
+                <div />
+              </div>
+              <div className='py-6'>
+                <a href='#' className='flex items-center gap-2 -mx-3 rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
+                  <ShoppingCart01Icon />
+                  Ver Carrito
                 </a>
               </div>
             </div>

@@ -16,7 +16,7 @@ import {
   XMarkIcon
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import { Rocket01Icon, HotdogIcon, FlowerPotIcon, InstagramIcon, Facebook02Icon, ShoppingCart01Icon } from 'hugeicons-react'
+import { Rocket01Icon, HotdogIcon, FlowerPotIcon, InstagramIcon, ShoppingCart01Icon } from 'hugeicons-react'
 
 const products = [
   { name: 'Figuras de colección', description: 'Podrás alegrar a tu niño interior.', href: '#', icon: Rocket01Icon },
@@ -156,7 +156,7 @@ export default function Navbar () {
                         />
                       </DisclosureButton>
                       <DisclosurePanel className='mt-2 space-y-2'>
-                        {[...products, ...callsToAction].map((item) => (
+                        {[...products].map((item) => (
                           <DisclosureButton
                             key={item.name}
                             as='a'

@@ -16,14 +16,12 @@ import {
   XMarkIcon
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import Flowerpot from './icons/Flowerpot.jsx'
-import Hotdog from './icons/HotDog.jsx'
-import Starship from './icons/Starship.jsx'
+import { Rocket01Icon, HotdogIcon, FlowerPotIcon } from 'hugeicons-react'
 
 const products = [
-  { name: 'Figuras de colección', description: 'Podrás alegrar a tu niño interior.', href: '#', icon: Starship },
-  { name: 'Maceteros', description: 'Embellece tu jardín y tus plantas.', href: '#', icon: Flowerpot },
-  { name: 'Porta Completos', description: 'Saborea tus Hot-Dogs de una forma entretenida!', href: '#', icon: Hotdog }
+  { name: 'Figuras de colección', description: 'Podrás alegrar a tu niño interior.', href: '#', icon: Rocket01Icon },
+  { name: 'Maceteros', description: 'Embellece tu jardín y tus plantas.', href: '#', icon: FlowerPotIcon },
+  { name: 'Porta Completos', description: 'Saborea tus Hot-Dogs de una forma entretenida!', href: '#', icon: HotdogIcon }
 ]
 const callsToAction = [
   { name: 'Ver nuestro proceso', href: '#', icon: PlayCircleIcon },
@@ -148,7 +146,7 @@ export default function Navbar () {
                   {({ open }) => (
                     <>
                       <DisclosureButton className='flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
-                        Product
+                        Productos
                         <ChevronDownIcon
                           className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
                           aria-hidden='true'
@@ -173,19 +171,13 @@ export default function Navbar () {
                   href='#'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
                 >
-                  Features
+                  Imprime con Nosotros
                 </a>
                 <a
                   href='#'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
                 >
-                  Marketplace
-                </a>
-                <a
-                  href='#'
-                  className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
-                >
-                  Company
+                  Quienes Somos
                 </a>
               </div>
               <div className='py-6'>

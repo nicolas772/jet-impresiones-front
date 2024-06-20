@@ -7,7 +7,7 @@ import {
 import App from './App.jsx'
 import './index.css'
 import ErrorPage from './components/ErrorPage.jsx'
-import Product from './components/Product.jsx'
+import ProductReview from './components/ProductReview.jsx'
 import Products from './components/Products'
 
 const router = createBrowserRouter([
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'products/:productId',
-        element: <Product />
+        element: <ProductReview />
       }
     ]
   }

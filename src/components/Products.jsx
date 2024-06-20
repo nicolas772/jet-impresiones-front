@@ -4,7 +4,7 @@ const products = [
   {
     id: 1,
     name: 'Porta completo animales',
-    href: '#',
+    href: 'products/1',
     imageSrc: './products/foto1.png',
     imageAlt: 'Porta completos de distintos animales',
     price: '$10.000',
@@ -13,7 +13,7 @@ const products = [
   {
     id: 2,
     name: 'Macetero mediano',
-    href: '#',
+    href: '/products/2',
     imageSrc: './products/foto2.png',
     imageAlt: 'Maceteros de distintos colores',
     price: '$15.000',
@@ -22,7 +22,7 @@ const products = [
   {
     id: 3,
     name: 'Figura de acción personalizada',
-    href: '#',
+    href: '/products/3',
     imageSrc: './products/foto3.png',
     imageAlt: 'Figura personalizada de accion',
     price: '$7.000',

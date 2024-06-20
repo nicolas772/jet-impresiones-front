@@ -55,6 +55,9 @@ export default function Navbar () {
           </button>
         </div>
         <PopoverGroup className='hidden lg:flex lg:gap-x-12'>
+          <a href='/' className='text-sm font-semibold leading-6 text-gray-900'>
+            Inicio
+          </a>
           <Popover className='relative'>
             <PopoverButton className='flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900'>
               Productos

@@ -8,6 +8,7 @@ import App from './App.jsx'
 import './index.css'
 import ErrorPage from './components/ErrorPage.jsx'
 import ProductReview from './components/ProductReview.jsx'
+import ProductReview2 from './components/ProductReview2.jsx'
 import Products from './components/Products'
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: 'products/:productId',
         element: <ProductReview />
+      },
+      {
+        path: 'products2/:productId',
+        element: <ProductReview2 />
       }
     ]
   }

@@ -6,11 +6,25 @@ import {
 } from 'react-router-dom'
 import App from './App.jsx'
 import './index.css'
+import ErrorPage from './components/ErrorPage.jsx'
+import Product from './components/Product.jsx'
+import Products from './components/Products'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '',
+        element: <Products />
+      },
+      {
+        path: 'products/:productId',
+        element: <Product />
+      }
+    ]
   }
 ])
 

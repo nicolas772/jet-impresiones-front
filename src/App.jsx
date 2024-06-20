@@ -1,5 +1,5 @@
 import Navbar from './components/Navbar'
-import Products from './components/Products'
+import { Outlet } from 'react-router-dom'
 // import BackgroundAnimated from './components/BackgroundAnimated'
 
 function App () {
@@ -7,7 +7,9 @@ function App () {
     <>
       {/* <BackgroundAnimated /> */}
       <Navbar />
-      <Products />
+      <div>
+        <Outlet />
+      </div>
     </>
   )
 }

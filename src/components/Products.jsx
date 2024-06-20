@@ -1,4 +1,4 @@
-import Product from './Product'
+import ProductItem from './ProductItem'
 
 const products = [
   {
@@ -39,7 +39,7 @@ export default function Products () {
           {
             products.map((product) => (
               <div key={product.id}>
-                <Product productInfo={product} />
+                <ProductItem productInfo={product} />
               </div>
             ))
           }

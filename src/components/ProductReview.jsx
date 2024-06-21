@@ -6,7 +6,7 @@ const product = {
   name: 'Macetero, tamaño MEDIANO, variedad de colores.',
   price: '$15.000',
   mainImage: {
-    src: '../../public/products/foto2.png',
+    src: '../../products/foto2.png',
     alt: 'Two each of gray, white, and black shirts laying flat.'
   },
   secondaryImages: [

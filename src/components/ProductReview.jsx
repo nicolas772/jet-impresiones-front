@@ -1,26 +1,23 @@
 import { useState } from 'react'
 import { HeartAddIcon, ShoppingCartAdd01Icon } from 'hugeicons-react' //eslint-disable-line
 import { Radio, RadioGroup } from '@headlessui/react'
+import { FeaturedImageGallery } from './FeaturedImageGalery'
 
 const product = {
   name: 'Macetero, tamaño MEDIANO, variedad de colores.',
   price: '$15.000',
-  mainImage: {
-    src: '../../products/foto2.png',
-    alt: 'Two each of gray, white, and black shirts laying flat.'
-  },
-  secondaryImages: [
+  images: [
     {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
+      src: '../../products/foto1.png',
+      alt: 'Two each of gray, white, and black shirts laying flat.'
+    },
+    {
+      src: '../../products/foto2.png',
       alt: 'Model wearing plain black basic tee.'
     },
     {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
+      src: '../../products/foto3.png',
       alt: 'Model wearing plain gray basic tee.'
-    },
-    {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
-      alt: 'Model wearing plain white basic tee.'
     }
   ],
   colors: [
@@ -48,9 +45,7 @@ export default function ProductReview () {
     <section className='py-8 bg-white md:py-12 dark:bg-gray-900 antialiased'>
       <div className='max-w-screen-xl px-4 mx-auto 2xl:px-0'>
         <div className='lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16'>
-          <div className='w-full overflow-hidden rounded-md h-full sm:h-96'>
-            <img className='h-full w-full object-cover object-center lg:h-full lg:w-full' src={product.mainImage.src} alt={product.mainImage.alt} />
-          </div>
+          <FeaturedImageGallery data={product.images} />
           <div className='mt-6 sm:mt-8 lg:mt-0'>
             <h1 className='text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white'>
               {product.name}

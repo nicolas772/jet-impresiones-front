@@ -37,7 +37,7 @@ export default function Navbar () {
 
   return (
     <header>
-      <nav className='mx-auto z-30 flex max-w-7xl items-center justify-between p-4 lg:px-8' aria-label='Global'>
+      <nav className='mx-auto z-30 flex max-w-7xl items-center justify-between p-8 lg:px-8' aria-label='Global'>
         <div className='flex lg:flex-1'>
           <a href='/' className='-m-1.5 p-1.5'>
             <span className='sr-only'>Your Company</span>
@@ -119,14 +119,14 @@ export default function Navbar () {
           <a href='https://www.instagram.com/jet.impresiones3d/' target='_blank'>
             <InstagramIcon />
           </a>
-          <a href='#'>
+          <a href='/shoping-cart'>
             <ShoppingCart01Icon />
           </a>
         </div>
       </nav>
       <Dialog className='lg:hidden' open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className='fixed inset-0 z-10' />
-        <DialogPanel className='fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-4 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
+        <DialogPanel className='fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-8 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
           <div className='flex items-center justify-between'>
             <a href='#' className='-m-1.5 p-1.5'>
               <span className='sr-only'>Jet Impresiones 3D</span>
@@ -196,7 +196,7 @@ export default function Navbar () {
                 <div />
               </div>
               <div className='py-6'>
-                <a href='#' className='flex items-center gap-2 -mx-3 rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
+                <a href='/shoping-cart' className='flex items-center gap-2 -mx-3 rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
                   <ShoppingCart01Icon />
                   Ver Carrito
                 </a>

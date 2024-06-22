@@ -8,8 +8,8 @@ import App from './App.jsx'
 import './index.css'
 import ErrorPage from './components/ErrorPage.jsx'
 import ProductReview from './components/ProductReview.jsx'
-import ProductReview2 from './components/ProductReview2.jsx'
 import Products from './components/Products'
+import ShopingCart from './components/ShopingCart.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,12 +22,12 @@ const router = createBrowserRouter([
         element: <Products />
       },
       {
-        path: 'products/:productId',
-        element: <ProductReview />
+        path: 'shoping-cart',
+        element: <ShopingCart />
       },
       {
-        path: 'products2/:productId',
-        element: <ProductReview2 />
+        path: 'products/:productId',
+        element: <ProductReview />
       }
     ]
   }

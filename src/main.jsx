@@ -10,6 +10,7 @@ import ErrorPage from './components/ErrorPage.jsx'
 import ProductReview from './components/ProductReview.jsx'
 import Products from './components/Products'
 import ShopingCart from './components/shopingCart/ShopingCart.jsx'
+import DeliveryForm from './components/deliveryForm/DeliveryForm.jsx'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: 'shoping-cart',
         element: <ShopingCart />
+      },
+      {
+        path: '/checkout-delivery',
+        element: <DeliveryForm />
       },
       {
         path: 'products/:productId',

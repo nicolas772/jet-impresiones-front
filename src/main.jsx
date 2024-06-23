@@ -9,7 +9,7 @@ import './index.css'
 import ErrorPage from './components/ErrorPage.jsx'
 import ProductReview from './components/ProductReview.jsx'
 import Products from './components/Products'
-import ShopingCart from './components/ShopingCart.jsx'
+import ShopingCart from './components/shopingCart/ShopingCart.jsx'
 
 const router = createBrowserRouter([
   {

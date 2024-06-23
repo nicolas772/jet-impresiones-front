@@ -41,6 +41,32 @@ function classNames (...classes) {
 
 export default function ProductReview () {
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
+  const [quantity, setQuantity] = useState(1)
+
+  const handleDecrement = () => {
+    setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1)) // Evita que la cantidad sea menor que 1
+  }
+
+  const handleIncrement = () => {
+    setQuantity(prevQuantity => prevQuantity + 1)
+  }
+
+  const handleChange = (event) => {
+    const value = event.target.value
+    const number = parseInt(value, 10)
+
+    if (!isNaN(number) && number > 0) {
+      setQuantity(number)
+    } else if (value === '') {
+      setQuantity('')
+    }
+  }
+
+  const handleBlur = () => {
+    if (quantity === '') {
+      setQuantity(1)
+    }
+  }
   return (
     <section className='py-8 bg-white md:py-8 dark:bg-gray-900 antialiased'>
       <div className='max-w-screen-xl px-4 mx-auto 2xl:px-0'>
@@ -117,13 +143,30 @@ export default function ProductReview () {
               <div className='ml-16'>
                 <h3 className='text-sm font-medium text-gray-900'>Cantidad</h3>
                 <div className='flex items-center mt-4'>
-                  <button type='button' id='decrement-button' data-input-counter-decrement='counter-input' className='inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700'>
+                  <button
+                    type='button'
+                    id='decrement-button'
+                    className='inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700'
+                    onClick={handleDecrement}
+                  >
                     <svg className='h-2.5 w-2.5 text-gray-900 dark:text-white' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 18 2'>
                       <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M1 1h16' />
                     </svg>
                   </button>
-                  <input type='text' id='counter-input' data-input-counter className='w-10 shrink-0 border-0 bg-transparent text-center text-md font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white' placeholder='' value='2' required />
-                  <button type='button' id='increment-button' data-input-counter-increment='counter-input' className='inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700'>
+                  <input
+                    type='text'
+                    id='counter-input'
+                    className='w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white'
+                    value={quantity}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <button
+                    type='button'
+                    id='increment-button'
+                    className='inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700'
+                    onClick={handleIncrement}
+                  >
                     <svg className='h-2.5 w-2.5 text-gray-900 dark:text-white' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 18 18'>
                       <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M9 1v16M1 9h16' />
                     </svg>

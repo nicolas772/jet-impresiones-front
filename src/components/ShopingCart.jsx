@@ -1,6 +1,6 @@
 export default function ShopingCart () {
   return (
-    <section className='bg-white py-8 px-8 antialiased dark:bg-gray-900 md:py-10'>
+    <section className='bg-white py-4 px-6 antialiased dark:bg-gray-900 md:py-6'>
       <div className='mx-auto max-w-screen-xl px-4 2xl:px-0'>
         <h2 className='text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl'>
           Tu Carrito
@@ -405,7 +405,7 @@ export default function ShopingCart () {
               </div>
             </div>
 
-            <div className='space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6'>
+            {/* <div className='space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6'>
               <form className='space-y-4'>
                 <div>
                   <label htmlFor='voucher' className='mb-2 block text-sm font-medium text-gray-900 dark:text-white'> Do you have a voucher or gift card? </label>
@@ -413,7 +413,7 @@ export default function ShopingCart () {
                 </div>
                 <button type='submit' className='flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'>Apply Code</button>
               </form>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

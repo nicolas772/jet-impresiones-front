@@ -42,7 +42,7 @@ function classNames (...classes) {
 export default function ProductReview () {
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   return (
-    <section className='py-8 bg-white md:py-12 dark:bg-gray-900 antialiased'>
+    <section className='py-8 bg-white md:py-8 dark:bg-gray-900 antialiased'>
       <div className='max-w-screen-xl px-4 mx-auto 2xl:px-0'>
         <div className='lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16'>
           <FeaturedImageGallery data={product.images} />

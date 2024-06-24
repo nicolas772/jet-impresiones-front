@@ -34,6 +34,16 @@ const UPDATE_STATE_BY_ACTION = {
     ]
     updateLocalStorage(newState)
     return newState
+  },
+  [CART_ACTION_TYPES.REMOVE_FROM_CART]: (state, action) => {
+    const { id } = action.payload
+    const newState = state.filter(item => item.id !== id)
+    updateLocalStorage(newState)
+    return newState
+  },
+  [CART_ACTION_TYPES.CLEAR_CART]: () => {
+    updateLocalStorage([])
+    return []
   }
 }
 

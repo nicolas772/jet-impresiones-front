@@ -1,0 +1,151 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Porta completo animales",
+      "description": "Porta completo impreso en 3D, en distinto tamaños y colores, ideal para regalo del dia del niño, dia del padre, etc.",
+      "shortDescription": "Excelente porta completo en variedad de colores",
+      "price": "$10.000",
+      "discountPercentage": 0,
+      "rating": 4,
+      "totalOpinions": 117,
+      "stock": 94,
+      "category": "portacompleto",
+      "thumbnail": {
+        "src": "../../products/foto1.png",
+        "alt": "Two each of gray, white, and black shirts laying flat."
+      },
+      "images": [
+        {
+          "src": "../../products/foto2.png",
+          "alt": "Model wearing plain black basic tee."
+        },
+        {
+          "src": "../../products/foto3.png",
+          "alt": "Model wearing plain gray basic tee."
+        }
+      ],
+      "colors": [
+        {
+          "name": "Rojo",
+          "class": "bg-red-800",
+          "selectedClass": "ring-gray-400"
+        },
+        {
+          "name": "Blanco",
+          "class": "bg-gray-100",
+          "selectedClass": "ring-gray-400"
+        },
+        {
+          "name": "Azul",
+          "class": "bg-blue-900",
+          "selectedClass": "ring-gray-900"
+        }
+      ],
+      "observations": [
+        "Medida: 21,7 x 13,8 cm.",
+        "Sujeto a disponibilidad.",
+        "Despacho entre 3 a 5 días.",
+        "El modelo 3D no se vende."
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Macetero tamaño MEDIANO",
+      "description": "Maceteros impresos en 3D a base de fibra de plástico, ideal para decorar tu jardin de una manera tierna y efectiva.",
+      "shortDescription": "Modelos con motivo dia de la madre",
+      "price": "$15.000",
+      "discountPercentage": 0,
+      "rating": 5,
+      "totalOpinions": 167,
+      "stock": 94,
+      "category": "macetero",
+      "thumbnail": {
+        "src": "../../products/foto2.png",
+        "alt": "Two each of gray, white, and black shirts laying flat."
+      },
+      "images": [
+        {
+          "src": "../../products/foto1.png",
+          "alt": "Model wearing plain black basic tee."
+        },
+        {
+          "src": "../../products/foto3.png",
+          "alt": "Model wearing plain gray basic tee."
+        }
+      ],
+      "colors": [
+        {
+          "name": "Rojo",
+          "class": "bg-red-800",
+          "selectedClass": "ring-gray-400"
+        },
+        {
+          "name": "Blanco",
+          "class": "bg-gray-100",
+          "selectedClass": "ring-gray-400"
+        },
+        {
+          "name": "Azul",
+          "class": "bg-blue-900",
+          "selectedClass": "ring-gray-900"
+        }
+      ],
+      "observations": [
+        "Medida: 21,7 x 13,8 cm.",
+        "Sujeto a disponibilidad.",
+        "Despacho entre 3 a 5 días.",
+        "El modelo 3D no se vende."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Figura de acción",
+      "description": "Figuras de acción personalizadas, ideal para regalos del dia del niño, cumpleaños, o para satisfacer tu deseo de niño interior.",
+      "shortDescription": "Distintos colores disponibles.",
+      "price": "$25.000",
+      "discountPercentage": 0,
+      "rating": 3,
+      "totalOpinions": 27,
+      "stock": 94,
+      "category": "figurasAccion",
+      "thumbnail": {
+        "src": "../../products/foto3.png",
+        "alt": "Two each of gray, white, and black shirts laying flat."
+      },
+      "images": [
+        {
+          "src": "../../products/foto1.png",
+          "alt": "Model wearing plain black basic tee."
+        },
+        {
+          "src": "../../products/foto2.png",
+          "alt": "Model wearing plain gray basic tee."
+        }
+      ],
+      "colors": [
+        {
+          "name": "Rojo",
+          "class": "bg-red-800",
+          "selectedClass": "ring-gray-400"
+        },
+        {
+          "name": "Blanco",
+          "class": "bg-gray-100",
+          "selectedClass": "ring-gray-400"
+        },
+        {
+          "name": "Azul",
+          "class": "bg-blue-900",
+          "selectedClass": "ring-gray-900"
+        }
+      ],
+      "observations": [
+        "Medida: 21,7 x 13,8 cm.",
+        "Sujeto a disponibilidad.",
+        "Despacho entre 3 a 5 días.",
+        "El modelo 3D no se vende."
+      ]
+    }
+  ]
+}

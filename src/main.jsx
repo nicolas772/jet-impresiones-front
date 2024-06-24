@@ -11,6 +11,7 @@ import ProductReview from './components/ProductReview.jsx'
 import Products from './components/Products'
 import ShopingCart from './components/shopingCart/ShopingCart.jsx'
 import DeliveryForm from './components/deliveryForm/DeliveryForm.jsx'
+import { products as initialProducts } from './mocks/products.json'
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <Products />
+        element: <Products products={initialProducts} />
       },
       {
         path: 'shoping-cart',

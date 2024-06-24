@@ -1,7 +1,7 @@
 import ProductItem from './ProductItem'
 import { useCart } from '../hooks/useCart'
 
-const products = [
+/* const products = [
   {
     id: 1,
     name: 'Porta completo animales',
@@ -29,12 +29,11 @@ const products = [
     price: '$7.000',
     color: 'Blanco | Amarillo | Negro'
   }
-]
+] */
 
-export default function Products () {
-  const { cart } = useCart()
+export default function Products ({ products }) {
+  const { clearCart } = useCart()
 
-  console.log(cart)
   return (
     <div className='bg-white/95 m-2 rounded-lg'>
       <div className='mx-auto max-w-2xl px-4 py-10 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8'>
@@ -43,13 +42,15 @@ export default function Products () {
           {
             products.map((product) => (
               <div key={product.id}>
-                <ProductItem productInfo={product} />
+                <ProductItem item={product} />
               </div>
             ))
           }
         </div>
       </div>
-
+      <button onClick={clearCart} className='bg-gray-200'>
+        Vaciar Carro
+      </button>
     </div>
   )
 }

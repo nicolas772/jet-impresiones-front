@@ -5,38 +5,6 @@ import { FeaturedImageGallery } from './FeaturedImageGalery'
 import { useCart } from '../hooks/useCart'
 import { useParams } from 'react-router-dom'
 
-/* const product = {
-  name: 'Macetero, tamaño MEDIANO, variedad de colores.',
-  price: '$15.000',
-  images: [
-    {
-      src: '../../products/foto1.png',
-      alt: 'Two each of gray, white, and black shirts laying flat.'
-    },
-    {
-      src: '../../products/foto2.png',
-      alt: 'Model wearing plain black basic tee.'
-    },
-    {
-      src: '../../products/foto3.png',
-      alt: 'Model wearing plain gray basic tee.'
-    }
-  ],
-  colors: [
-    { name: 'Rojo', class: 'bg-red-800', selectedClass: 'ring-gray-400' },
-    { name: 'Blanco', class: 'bg-gray-100', selectedClass: 'ring-gray-400' },
-    { name: 'Azul', class: 'bg-blue-900', selectedClass: 'ring-gray-900' }
-  ],
-  description:
-    'Maceteros impresos en 3D a base de fibra de plástico, ideal para decorar tu jardin de una manera tierna y efectiva.',
-  observations: [
-    'Medida: 21,7 x 13,8 cm.',
-    'Sujeto a disponibilidad.',
-    'Despacho entre 3 a 5 días.',
-    'El modelo 3D no se vende.'
-  ]
-} */
-const reviews = { href: '#', average: 4, totalCount: 117 }
 function classNames (...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -86,7 +54,7 @@ export default function ProductReview ({ products }) {
     <section className='py-8 bg-white md:py-8 dark:bg-gray-900 antialiased'>
       <div className='max-w-screen-xl px-4 mx-auto 2xl:px-0'>
         <div className='lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16'>
-          <FeaturedImageGallery data={product.images} />
+          <FeaturedImageGallery data={[product.thumbnail, ...product.images]} />
           <div className='mt-6 sm:mt-8 lg:mt-0'>
             <h1 className='text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white'>
               {product.title}
@@ -101,7 +69,7 @@ export default function ProductReview ({ products }) {
                     <svg
                       key={rating}
                       className={classNames(
-                        reviews.average > rating ? 'text-yellow-300' : 'text-gray-300',
+                        product.rating > rating ? 'text-yellow-300' : 'text-gray-300',
                         'h-5 w-5 flex-shrink-0'
                       )}
                       aria-hidden='true'
@@ -118,10 +86,10 @@ export default function ProductReview ({ products }) {
                   ))}
                 </div>
                 <p className='text-sm font-medium leading-none text-gray-500 dark:text-gray-400'>
-                  ({reviews.average})
+                  ({product.rating})
                 </p>
                 <a href='#' className='text-sm font-medium leading-none text-gray-900 underline hover:no-underline dark:text-white'>
-                  {reviews.totalCount} Reviews
+                  {product.totalOpinions} Opiniones
                 </a>
               </div>
             </div>

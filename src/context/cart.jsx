@@ -18,7 +18,6 @@ function useCartReducer () {
 
   return { state, addToCart, removeFromCart, clearCart }
 }
-
 // 1. crear contexto
 export const CartContext = createContext()
 

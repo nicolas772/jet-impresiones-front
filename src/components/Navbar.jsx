@@ -17,6 +17,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import { Rocket01Icon, HotdogIcon, FlowerPotIcon, InstagramIcon, ShoppingCart01Icon } from 'hugeicons-react'
+import { useNotification } from '../hooks/useNotification'
 
 const products = [
   { name: 'Figuras de colección', description: 'Podrás alegrar a tu niño interior.', href: '#', icon: Rocket01Icon },
@@ -34,7 +35,8 @@ function classNames (...classes) {
 
 export default function Navbar () {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [showNotification, setShowNotification] = useState(true)
+  const { notification } = useNotification()
+  const { notifications, showNotifications } = notification
   return (
     <header>
       <nav className='mx-auto z-30 flex max-w-7xl items-center justify-between p-6 lg:px-8' aria-label='Global'>
@@ -122,8 +124,13 @@ export default function Navbar () {
 
           <a href='/shoping-cart' className='relative inline-flex p-2 text-sm font-medium text-center rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-400'>
             <ShoppingCart01Icon />
-            <span className='sr-only'>Notifications</span>
-            <div className='absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900'>2</div>
+            {
+              showNotifications && (
+                <div className='absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900'>
+                  {notifications}
+                </div>
+              )
+            }
           </a>
 
         </div>
@@ -201,12 +208,12 @@ export default function Navbar () {
               </div>
               <div className='py-4'>
                 <a href='/shoping-cart' className='flex items-center gap-2 -mx-3 rounded-lg px-3 py-2.5 text-base text-gray-900 hover:bg-gray-50'>
-                  <span className={`relative inline-flex text-sm font-medium text-center ${showNotification ? 'p-2' : 'p-0'} pl-0`}>
+                  <span className={`relative inline-flex text-sm font-medium text-center ${showNotifications ? 'p-2' : 'p-0'} pl-0`}>
                     <ShoppingCart01Icon />
                     {
-                      showNotification && (
+                      showNotifications && (
                         <div className='absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900'>
-                          2
+                          {notifications}
                         </div>
                       )
                     }

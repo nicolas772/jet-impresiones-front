@@ -4,9 +4,17 @@ import GiftCardBox from './GiftCardBox' // eslint-disable-line
 import ProductItem from '../ProductItem'
 import { useCart } from '../../hooks/useCart'
 import { products as popularProducts } from '../../mocks/popularProducts.json'
+import { useNotification } from '../../hooks/useNotification'
+import { useEffect } from 'react'
 
 export default function ShopingCart () {
   const { cart } = useCart()
+  const { clearNotification } = useNotification()
+
+  useEffect(() => {
+    clearNotification()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return (
     <section className='bg-white py-4 px-6 antialiased dark:bg-gray-900 md:py-6'>
       <div className='mx-auto max-w-screen-xl px-4 2xl:px-0'>

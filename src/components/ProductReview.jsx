@@ -4,6 +4,7 @@ import { Radio, RadioGroup } from '@headlessui/react'
 import { FeaturedImageGallery } from './FeaturedImageGalery'
 import { useCart } from '../hooks/useCart'
 import { useParams } from 'react-router-dom'
+import { useNotification } from '../hooks/useNotification'
 
 function classNames (...classes) {
   return classes.filter(Boolean).join(' ')
@@ -12,6 +13,7 @@ function classNames (...classes) {
 export default function ProductReview ({ products }) {
   const { id } = useParams()
   const { addToCart } = useCart()
+  const { addNotification } = useNotification()
   const product = products.find(p => p.id === parseInt(id))
   const colors = product.colors
 
@@ -45,6 +47,7 @@ export default function ProductReview ({ products }) {
 
   const handleAdd = () => {
     addToCart(product)
+    addNotification()
   }
 
   if (!product) {

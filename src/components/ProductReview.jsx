@@ -5,6 +5,7 @@ import { FeaturedImageGallery } from './FeaturedImageGalery'
 import { useCart } from '../hooks/useCart'
 import { useParams } from 'react-router-dom'
 import { useNotification } from '../hooks/useNotification'
+import { colors as allColors } from '../constants/colors'
 
 function classNames (...classes) {
   return classes.filter(Boolean).join(' ')
@@ -15,7 +16,7 @@ export default function ProductReview ({ products }) {
   const { addToCart } = useCart()
   const { addNotification } = useNotification()
   const product = products.find(p => p.id === parseInt(id))
-  const colors = product.colors
+  const colors = allColors.filter(({ name }) => product.colors.includes(name))
 
   const [selectedColor, setSelectedColor] = useState(colors[0])
   const [quantity, setQuantity] = useState(1)
@@ -102,7 +103,7 @@ export default function ProductReview ({ products }) {
                 <h3 className='text-sm font-medium text-gray-900'>Color</h3>
                 <fieldset aria-label='Choose a color' className='mt-4'>
                   <RadioGroup value={selectedColor} onChange={setSelectedColor} className='flex items-center space-x-3'>
-                    {product.colors.map((color) => (
+                    {colors.map((color) => (
                       <Radio
                         key={color.name}
                         value={color}

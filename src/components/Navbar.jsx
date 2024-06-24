@@ -34,10 +34,10 @@ function classNames (...classes) {
 
 export default function Navbar () {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
+  const [showNotification, setShowNotification] = useState(true)
   return (
     <header>
-      <nav className='mx-auto z-30 flex max-w-7xl items-center justify-between p-8 lg:px-8' aria-label='Global'>
+      <nav className='mx-auto z-30 flex max-w-7xl items-center justify-between p-6 lg:px-8' aria-label='Global'>
         <div className='flex lg:flex-1'>
           <a href='/' className='-m-1.5 p-1.5'>
             <span className='sr-only'>Your Company</span>
@@ -115,13 +115,17 @@ export default function Navbar () {
             Quienes Somos
           </a>
         </PopoverGroup>
-        <div className='hidden lg:flex lg:flex-1 lg:justify-end gap-5'>
-          <a href='https://www.instagram.com/jet.impresiones3d/' target='_blank'>
+        <div className='hidden lg:flex lg:flex-1 lg:justify-end gap-2'>
+          <a href='https://www.instagram.com/jet.impresiones3d/' target='_blank' className='p-2 rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-400'>
             <InstagramIcon />
           </a>
-          <a href='/shoping-cart'>
+
+          <a href='/shoping-cart' className='relative inline-flex p-2 text-sm font-medium text-center rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-400'>
             <ShoppingCart01Icon />
+            <span className='sr-only'>Notifications</span>
+            <div className='absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900'>2</div>
           </a>
+
         </div>
       </nav>
       <Dialog className='lg:hidden' open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -195,10 +199,21 @@ export default function Navbar () {
                 </a>
                 <div />
               </div>
-              <div className='py-6'>
-                <a href='/shoping-cart' className='flex items-center gap-2 -mx-3 rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
-                  <ShoppingCart01Icon />
-                  Ver Carrito
+              <div className='py-4'>
+                <a href='/shoping-cart' className='flex items-center gap-2 -mx-3 rounded-lg px-3 py-2.5 text-base text-gray-900 hover:bg-gray-50'>
+                  <span className={`relative inline-flex text-sm font-medium text-center ${showNotification ? 'p-2' : 'p-0'} pl-0`}>
+                    <ShoppingCart01Icon />
+                    {
+                      showNotification && (
+                        <div className='absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900'>
+                          2
+                        </div>
+                      )
+                    }
+                  </span>
+                  <span className='font-semibold leading-7'>
+                    Ver Carrito
+                  </span>
                 </a>
               </div>
             </div>

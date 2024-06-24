@@ -1,4 +1,5 @@
 import ProductItem from './ProductItem'
+import { useCart } from '../hooks/useCart'
 
 const products = [
   {
@@ -31,6 +32,9 @@ const products = [
 ]
 
 export default function Products () {
+  const { cart } = useCart()
+
+  console.log(cart)
   return (
     <div className='bg-white/95 m-2 rounded-lg'>
       <div className='mx-auto max-w-2xl px-4 py-10 sm:px-6 sm:py-4 lg:max-w-7xl lg:px-8'>

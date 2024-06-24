@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { HeartAddIcon, ShoppingCartAdd01Icon } from 'hugeicons-react' //eslint-disable-line
 import { Radio, RadioGroup } from '@headlessui/react'
 import { FeaturedImageGallery } from './FeaturedImageGalery'
+import { useCart } from '../hooks/useCart'
 
 const product = {
   name: 'Macetero, tamaño MEDIANO, variedad de colores.',
@@ -40,6 +41,8 @@ function classNames (...classes) {
 }
 
 export default function ProductReview () {
+  const { addToCart } = useCart()
+
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [quantity, setQuantity] = useState(1)
 
@@ -66,6 +69,10 @@ export default function ProductReview () {
     if (quantity === '') {
       setQuantity(1)
     }
+  }
+
+  const handleAdd = () => {
+    addToCart(product)
   }
   return (
     <section className='py-8 bg-white md:py-8 dark:bg-gray-900 antialiased'>
@@ -183,7 +190,7 @@ export default function ProductReview () {
                 Añadir a Favoritos
               </button> */}
               <button
-                onClick={() => console.log('añadir a carro')}
+                onClick={handleAdd}
                 className='text-white mt-4 sm:mt-0 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center'
               >
                 <ShoppingCartAdd01Icon className='w-5 h-5 -ms-2 me-2' />

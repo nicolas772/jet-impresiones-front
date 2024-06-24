@@ -3,8 +3,9 @@ import { HeartAddIcon, ShoppingCartAdd01Icon } from 'hugeicons-react' //eslint-d
 import { Radio, RadioGroup } from '@headlessui/react'
 import { FeaturedImageGallery } from './FeaturedImageGalery'
 import { useCart } from '../hooks/useCart'
+import { useParams } from 'react-router-dom'
 
-const product = {
+/* const product = {
   name: 'Macetero, tamaño MEDIANO, variedad de colores.',
   price: '$15.000',
   images: [
@@ -34,16 +35,18 @@ const product = {
     'Despacho entre 3 a 5 días.',
     'El modelo 3D no se vende.'
   ]
-}
+} */
 const reviews = { href: '#', average: 4, totalCount: 117 }
 function classNames (...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function ProductReview () {
+export default function ProductReview ({ products }) {
+  const { id } = useParams()
   const { addToCart } = useCart()
+  const product = products.find(p => p.id === parseInt(id))
 
-  const [selectedColor, setSelectedColor] = useState(product.colors[0])
+  const [selectedColor, setSelectedColor] = useState(products[0].colors[0])
   const [quantity, setQuantity] = useState(1)
 
   const handleDecrement = () => {
@@ -74,6 +77,11 @@ export default function ProductReview () {
   const handleAdd = () => {
     addToCart(product)
   }
+
+  if (!product) {
+    return <div className='m-8'>Product not found</div>
+  }
+
   return (
     <section className='py-8 bg-white md:py-8 dark:bg-gray-900 antialiased'>
       <div className='max-w-screen-xl px-4 mx-auto 2xl:px-0'>
@@ -81,7 +89,7 @@ export default function ProductReview () {
           <FeaturedImageGallery data={product.images} />
           <div className='mt-6 sm:mt-8 lg:mt-0'>
             <h1 className='text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white'>
-              {product.name}
+              {product.title}
             </h1>
             <div className='mt-4 sm:items-center sm:gap-4 sm:flex'>
               <p className='text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white'>

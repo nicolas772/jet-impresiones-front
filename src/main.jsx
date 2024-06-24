@@ -32,8 +32,8 @@ const router = createBrowserRouter([
         element: <DeliveryForm />
       },
       {
-        path: 'products/:productId',
-        element: <ProductReview />
+        path: 'products/:id',
+        element: <ProductReview products={initialProducts} />
       }
     ]
   }

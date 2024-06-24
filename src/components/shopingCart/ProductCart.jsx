@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useCart } from '../../hooks/useCart'
 
 export default function ProductCart ({ item }) {
+  const { removeFromCart } = useCart()
   const [quantity, setQuantity] = useState(item.quantity)
   const handleDecrement = () => {
     setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1)) // Evita que la cantidad sea menor que 1
@@ -25,6 +27,10 @@ export default function ProductCart ({ item }) {
     if (quantity === '') {
       setQuantity(1)
     }
+  }
+
+  const handleRemove = () => {
+    removeFromCart(item)
   }
 
   return (
@@ -78,7 +84,7 @@ export default function ProductCart ({ item }) {
             <a href={`products/${item.id}`} className='text-base font-semibold text-gray-900 hover:underline dark:text-white'>{item.title}</a>
             <p>{item.shortDescription}</p>
             <div className='flex items-center gap-4'>
-              <button type='button' className='inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500'>
+              <button onClick={handleRemove} type='button' className='inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500'>
                 <svg className='me-1.5 h-5 w-5' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'>
                   <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M6 18 17.94 6M18 18 6.06 6' />
                 </svg>

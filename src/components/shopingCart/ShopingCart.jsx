@@ -7,7 +7,6 @@ import { products as popularProducts } from '../../mocks/popularProducts.json'
 
 export default function ShopingCart () {
   const { cart } = useCart()
-  console.log(popularProducts)
   return (
     <section className='bg-white py-4 px-6 antialiased dark:bg-gray-900 md:py-6'>
       <div className='mx-auto max-w-screen-xl px-4 2xl:px-0'>

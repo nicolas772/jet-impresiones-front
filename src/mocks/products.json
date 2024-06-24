@@ -26,21 +26,9 @@
         }
       ],
       "colors": [
-        {
-          "name": "Rojo",
-          "class": "bg-red-800",
-          "selectedClass": "ring-gray-400"
-        },
-        {
-          "name": "Blanco",
-          "class": "bg-gray-100",
-          "selectedClass": "ring-gray-400"
-        },
-        {
-          "name": "Azul",
-          "class": "bg-blue-900",
-          "selectedClass": "ring-gray-900"
-        }
+        { "name": "Rojo", "class": "bg-red-800", "selectedClass": "ring-gray-400" },
+        { "name": "Blanco", "class": "bg-gray-100", "selectedClass": "ring-gray-400" },
+        { "name": "Azul", "class": "bg-blue-900", "selectedClass": "ring-gray-900" }
       ],
       "observations": [
         "Medida: 21,7 x 13,8 cm.",

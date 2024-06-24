@@ -13,8 +13,9 @@ export default function ProductReview ({ products }) {
   const { id } = useParams()
   const { addToCart } = useCart()
   const product = products.find(p => p.id === parseInt(id))
+  const colors = product.colors
 
-  const [selectedColor, setSelectedColor] = useState(products[0].colors[0])
+  const [selectedColor, setSelectedColor] = useState(colors[0])
   const [quantity, setQuantity] = useState(1)
 
   const handleDecrement = () => {

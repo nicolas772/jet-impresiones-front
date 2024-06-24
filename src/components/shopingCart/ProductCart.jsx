@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 
 export default function ProductCart ({ item }) {
-  const [quantity, setQuantity] = useState(item.qty)
-
+  const [quantity, setQuantity] = useState(item.quantity)
   const handleDecrement = () => {
     setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1)) // Evita que la cantidad sea menor que 1
   }
@@ -33,7 +32,7 @@ export default function ProductCart ({ item }) {
       <div className='rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6'>
         <div className='space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0'>
           <a href='#' className='shrink-0 md:order-1'>
-            <img className='h-20 w-20' src={item.image.src} alt={item.image.alt} />
+            <img className='h-20 w-20' src={item.thumbnail.src} alt={item.thumbnail.alt} />
           </a>
 
           <div className='flex items-center justify-between md:order-3 md:justify-end'>
@@ -76,7 +75,7 @@ export default function ProductCart ({ item }) {
           </div>
 
           <div className='w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md'>
-            <a href={`products/${item.id}`} className='text-base font-semibold text-gray-900 hover:underline dark:text-white'>{item.name}</a>
+            <a href={`products/${item.id}`} className='text-base font-semibold text-gray-900 hover:underline dark:text-white'>{item.title}</a>
             <p>{item.shortDescription}</p>
             <div className='flex items-center gap-4'>
               <button type='button' className='inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500'>

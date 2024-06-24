@@ -1,36 +1,6 @@
 import ProductItem from './ProductItem'
 import { useCart } from '../hooks/useCart'
 
-/* const products = [
-  {
-    id: 1,
-    name: 'Porta completo animales',
-    href: 'products/1',
-    imageSrc: './products/foto1.png',
-    imageAlt: 'Porta completos de distintos animales',
-    price: '$10.000',
-    color: 'Varios colores'
-  },
-  {
-    id: 2,
-    name: 'Macetero mediano',
-    href: '/products/2',
-    imageSrc: './products/foto2.png',
-    imageAlt: 'Maceteros de distintos colores',
-    price: '$15.000',
-    color: 'Varios colores'
-  },
-  {
-    id: 3,
-    name: 'Figura de acción personalizada',
-    href: '/products/3',
-    imageSrc: './products/foto3.png',
-    imageAlt: 'Figura personalizada de accion',
-    price: '$7.000',
-    color: 'Blanco | Amarillo | Negro'
-  }
-] */
-
 export default function Products ({ products }) {
   const { clearCart } = useCart()
 

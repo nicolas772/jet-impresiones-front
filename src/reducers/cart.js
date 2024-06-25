@@ -12,8 +12,8 @@ export const updateLocalStorage = state => {
 
 const UPDATE_STATE_BY_ACTION = {
   [CART_ACTION_TYPES.ADD_TO_CART]: (state, action) => {
-    const { id, set } = action.payload
-    const productInCartIndex = state.findIndex(item => item.id === id)
+    const { id, set, selectedColor } = action.payload
+    const productInCartIndex = state.findIndex(item => item.id === id && item.selectedColor === selectedColor)
 
     if (productInCartIndex >= 0) {
       const newState = [
@@ -38,8 +38,8 @@ const UPDATE_STATE_BY_ACTION = {
     return newState
   },
   [CART_ACTION_TYPES.REMOVE_FROM_CART]: (state, action) => {
-    const { id } = action.payload
-    const newState = state.filter(item => item.id !== id)
+    const { id, selectedColor } = action.payload
+    const newState = state.filter(item => !(item.id === id && item.selectedColor.name === selectedColor.name))
     updateLocalStorage(newState)
     return newState
   },

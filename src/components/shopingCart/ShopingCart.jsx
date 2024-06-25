@@ -28,7 +28,7 @@ export default function ShopingCart () {
           <div className='mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl'>
             {
               cart.map((product) => (
-                <ProductCart key={product.id} item={product} />
+                <ProductCart key={`${product.id}-${product.selectedColor.name}`} item={product} />
               ))
             }
             <div className='hidden xl:mt-8 xl:block'>

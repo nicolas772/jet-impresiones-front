@@ -51,7 +51,8 @@ export default function ProductReview ({ products }) {
     const newProduct = {
       ...product,
       quantity,
-      set: false
+      set: false,
+      selectedColor
     }
     addToCart(newProduct)
     addNotification()

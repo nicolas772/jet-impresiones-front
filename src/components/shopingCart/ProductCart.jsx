@@ -54,7 +54,7 @@ export default function ProductCart ({ item }) {
 
           <div className='flex items-center justify-between md:order-3 md:justify-end'>
             <div className='flex flex-col items-center'>
-              <p className='py-1 font-semibold text-sm'>Cantidad</p>
+              <h3 className='font-semibold text-sm py-1'>Cantidad</h3>
               <div className='flex items-center'>
                 <button
                   type='button'
@@ -86,14 +86,18 @@ export default function ProductCart ({ item }) {
                 </button>
               </div>
             </div>
-            <div className='text-end md:order-4 md:w-32'>
+            <div className='text-end md:order-4 md:w-28'>
               <p className='text-base font-bold text-gray-900 dark:text-white'>{toFormat(item.price)}</p>
             </div>
           </div>
 
-          <div className='w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md'>
+          <div className='w-full min-w-0 flex-1 space-y-3 md:order-2 md:max-w-md'>
             <a href={`products/${item.id}`} className='text-base font-semibold text-gray-900 hover:underline dark:text-white'>{item.title}</a>
-            <p>{item.shortDescription}</p>
+            <p className=''>{item.shortDescription}</p>
+            <div className='flex items-center gap-2'>
+              <p className='text-md'>Color:</p>
+              <div className={`w-7 h-7 ${item.selectedColor.class} ring-2 ${item.selectedColor.selectedClass} rounded-full`} />
+            </div>
             <div className='flex items-center gap-4'>
               <button onClick={handleRemove} type='button' className='inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500'>
                 <svg className='me-1.5 h-5 w-5' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'>

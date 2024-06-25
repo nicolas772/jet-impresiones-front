@@ -6,6 +6,7 @@ import { useCart } from '../hooks/useCart'
 import { useParams } from 'react-router-dom'
 import { useNotification } from '../hooks/useNotification'
 import { colors as allColors } from '../constants/colors'
+import { toFormat } from '../constants/format'
 
 function classNames (...classes) {
   return classes.filter(Boolean).join(' ')
@@ -71,7 +72,7 @@ export default function ProductReview ({ products }) {
             </h1>
             <div className='mt-4 sm:items-center sm:gap-4 sm:flex'>
               <p className='text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white'>
-                {product.price}
+                {toFormat(product.price)}
               </p>
               <div className='flex items-center gap-2 mt-2 sm:mt-0'>
                 <div className='flex items-center gap-1'>

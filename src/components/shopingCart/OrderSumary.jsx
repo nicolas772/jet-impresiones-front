@@ -1,6 +1,27 @@
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useCart } from '../../hooks/useCart'
+import { toFormat } from '../../constants/format'
 
 export default function OrderSumary () {
+  const { cart } = useCart()
+  const [normalPrice, setNormalPrice] = useState(0)
+  const [discount, setDiscount] = useState(0)
+
+  useEffect(() => {
+    const total = cart.reduce(
+      (acc, curr) => {
+        return (acc + (curr.price * curr.quantity))
+      }, 0)
+
+    const desc = cart.reduce(
+      (acc, curr) => {
+        return (acc + (curr.price * curr.quantity * curr.discountPercentage / 100))
+      }, 0)
+    setNormalPrice(total)
+    setDiscount(desc)
+  }, [cart])
+
   const navigate = useNavigate()
   const toDeliveryForm = () => {
     // primero se debe verificar que carro no esté vacío
@@ -15,19 +36,19 @@ export default function OrderSumary () {
         <div className='space-y-2'>
           <dl className='flex items-center justify-between gap-4'>
             <dt className='text-base font-normal text-gray-500 dark:text-gray-400'>Precio Normal</dt>
-            <dd className='text-base font-medium text-gray-900 dark:text-white'>$7,592.00</dd>
+            <dd className='text-base font-medium text-gray-900 dark:text-white'>{toFormat(normalPrice)}</dd>
           </dl>
 
           <dl className='flex items-center justify-between gap-4'>
             <dt className='text-base font-normal text-gray-500 dark:text-gray-400'>Descuentos</dt>
-            <dd className='text-base font-medium text-green-600'>-$299.00</dd>
+            <dd className='text-base font-medium text-green-600'>-{discount === 0 ? '' : toFormat(discount)}</dd>
           </dl>
         </div>
 
         <dl className='flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700'>
-          <dt className='text-base font-bold text-gray-900 dark:text-white'>Total</dt>
+          <dt className='text-base font-bold text-gray-900 dark:text-white'>Precio Total</dt>
           <dd className='text-base font-bold text-gray-900 dark:text-white'>
-            $8,191.00 <span className='text-sm font-normal'>+ envío</span>
+            {toFormat(normalPrice - discount)} <span className='text-sm font-normal'>+ envío</span>
           </dd>
         </dl>
       </div>

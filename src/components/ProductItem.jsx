@@ -1,3 +1,5 @@
+import { toFormat } from '../constants/format'
+
 export default function ProductItem ({ item }) {
   const { thumbnail, title, shortDescription, price, id } = item
   return (
@@ -20,7 +22,7 @@ export default function ProductItem ({ item }) {
             </h3>
             <p className='mt-1 text-sm text-gray-500'>{shortDescription}</p>
           </div>
-          <p className='text-sm font-medium text-gray-900'>{price}</p>
+          <p className='text-sm font-medium text-gray-900'>{toFormat(price)}</p>
         </div>
       </div>
     </>

@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { useCart } from '../../hooks/useCart'
+import { toFormat } from '../../constants/format'
 
 export default function ProductCart ({ item }) {
   const { removeFromCart, addToCart } = useCart()
@@ -86,7 +87,7 @@ export default function ProductCart ({ item }) {
               </div>
             </div>
             <div className='text-end md:order-4 md:w-32'>
-              <p className='text-base font-bold text-gray-900 dark:text-white'>{item.price}</p>
+              <p className='text-base font-bold text-gray-900 dark:text-white'>{toFormat(item.price)}</p>
             </div>
           </div>
 

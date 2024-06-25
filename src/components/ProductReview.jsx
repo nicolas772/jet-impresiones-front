@@ -19,11 +19,14 @@ export default function ProductReview ({ products }) {
   const product = products.find(p => p.id === parseInt(id))
   const colors = allColors.filter(({ name }) => product.colors.includes(name))
 
+  const hasDiscount = product.discountPercentage > 0
+  const finalPrice = product.price * (1 - product.discountPercentage / 100)
+
   const [selectedColor, setSelectedColor] = useState(colors[0])
   const [quantity, setQuantity] = useState(1)
 
   const handleDecrement = () => {
-    setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1)) // Evita que la cantidad sea menor que 1
+    setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1))
   }
 
   const handleIncrement = () => {
@@ -68,13 +71,34 @@ export default function ProductReview ({ products }) {
         <div className='lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16'>
           <FeaturedImageGallery data={[product.thumbnail, ...product.images]} />
           <div className='mt-6 sm:mt-8 lg:mt-0'>
-            <h1 className='text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white'>
+            <h1 className='text-xl mb-4 font-semibold text-gray-900 sm:text-2xl dark:text-white'>
               {product.title}
             </h1>
-            <div className='mt-4 sm:items-center sm:gap-4 sm:flex'>
-              <p className='text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white'>
-                {toFormat(product.price)}
-              </p>
+            {
+              hasDiscount && (
+                <p className='text-xs line-through text-gray-500 sm:text-sm dark:text-white'>
+                  {toFormat(product.price)}
+                </p>
+              )
+            }
+            <div className='sm:items-center sm:gap-4 sm:flex'>
+              {
+                hasDiscount
+                  ? (
+                    <div>
+                      <p className='text-2xl font-extrabold text-red-700 sm:text-3xl dark:text-white'>
+                        {toFormat(finalPrice)}
+                      </p>
+                    </div>
+                    )
+                  : (
+                    <>
+                      <p className='text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white'>
+                        {toFormat(product.price)}
+                      </p>
+                    </>
+                    )
+              }
               <div className='flex items-center gap-2 mt-2 sm:mt-0'>
                 <div className='flex items-center gap-1'>
                   {[0, 1, 2, 3, 4].map((rating) => (
@@ -127,7 +151,7 @@ export default function ProductReview ({ products }) {
                           aria-hidden='true'
                           className={classNames(
                             color.class,
-                            'h-8 w-8 rounded-full border border-black border-opacity-10'
+                            'h-6 w-6 rounded-full border border-black border-opacity-10'
                           )}
                         />
                       </Radio>

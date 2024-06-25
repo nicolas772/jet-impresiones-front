@@ -1,7 +1,10 @@
 import { toFormat } from '../constants/format'
 
 export default function ProductItem ({ item }) {
-  const { thumbnail, title, shortDescription, price, id } = item
+  const { thumbnail, title, shortDescription, price, id, discountPercentage } = item
+  const hasDiscount = discountPercentage > 0
+  const finalPrice = price * (1 - discountPercentage / 100)
+
   return (
     <>
       <div className='group relative'>
@@ -12,7 +15,7 @@ export default function ProductItem ({ item }) {
             className='h-full w-full object-cover object-center lg:h-full lg:w-full'
           />
         </div>
-        <div className='mt-4 flex justify-between'>
+        <div className='mt-4 flex justify-between gap-1'>
           <div>
             <h3 className='text-sm font-semibold text-gray-700'>
               <a href={`products/${id}`}>
@@ -22,7 +25,21 @@ export default function ProductItem ({ item }) {
             </h3>
             <p className='mt-1 text-sm text-gray-500'>{shortDescription}</p>
           </div>
-          <p className='text-sm font-medium text-gray-900'>{toFormat(price)}</p>
+          <div className='flex flex-col items-end'>
+            {
+              hasDiscount
+                ? (
+                  <>
+                    <p className='text-xs line-through font-medium text-gray-500'>{toFormat(price)}</p>
+                    <p className='text-md font-medium text-red-700'>{toFormat(finalPrice)}</p>
+                  </>
+                  )
+                : (
+                  <p className='text-md font-medium text-gray-900'>{toFormat(price)}</p>
+                  )
+            }
+
+          </div>
         </div>
       </div>
     </>

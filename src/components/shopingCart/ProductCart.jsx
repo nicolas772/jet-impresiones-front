@@ -6,6 +6,9 @@ import { toFormat } from '../../constants/format'
 export default function ProductCart ({ item }) {
   const { removeFromCart, addToCart } = useCart()
   const [quantity, setQuantity] = useState(item.quantity)
+  const hasDiscount = item.discountPercentage > 0
+  const finalPrice = item.price * (1 - item.discountPercentage / 100)
+
   const handleDecrement = () => {
     setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1)) // Evita que la cantidad sea menor que 1
   }
@@ -48,8 +51,8 @@ export default function ProductCart ({ item }) {
     <div className='pb-4'>
       <div className='rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6'>
         <div className='space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0'>
-          <a href='#' className='shrink-0 md:order-1'>
-            <img className='h-20 w-20' src={item.thumbnail.src} alt={item.thumbnail.alt} />
+          <a href={`products/${item.id}`} className='shrink-0 md:order-1'>
+            <img className='h-28 w-28' src={item.thumbnail.src} alt={item.thumbnail.alt} />
           </a>
 
           <div className='flex items-center justify-between md:order-3 md:justify-end'>
@@ -87,7 +90,18 @@ export default function ProductCart ({ item }) {
               </div>
             </div>
             <div className='text-end md:order-4 md:w-28'>
-              <p className='text-base font-bold text-gray-900 dark:text-white'>{toFormat(item.price)}</p>
+              {
+                hasDiscount
+                  ? (
+                    <>
+                      <p className='text-lg font-bold text-gray-900 dark:text-white'>{toFormat(finalPrice)}</p>
+                      <p className='text-xs line-through text-gray-900 dark:text-white'>{toFormat(item.price)}</p>
+                    </>
+                    )
+                  : (
+                    <p className='text-lg font-bold text-gray-900 dark:text-white'>{toFormat(finalPrice)}</p>
+                    )
+              }
             </div>
           </div>
 
@@ -96,7 +110,7 @@ export default function ProductCart ({ item }) {
             <p className=''>{item.shortDescription}</p>
             <div className='flex items-center gap-2'>
               <p className='text-md'>Color:</p>
-              <div className={`w-7 h-7 ${item.selectedColor.class} ring-2 ${item.selectedColor.selectedClass} rounded-full`} />
+              <div className={`w-5 h-5 ${item.selectedColor.class} ring-2 ${item.selectedColor.selectedClass} ring-offset-1 rounded-full`} />
             </div>
             <div className='flex items-center gap-4'>
               <button onClick={handleRemove} type='button' className='inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500'>

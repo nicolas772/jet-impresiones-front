@@ -35,18 +35,19 @@ function classNames (...classes) {
 
 export default function Navbar () {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { notification } = useNotification()
+  const { notification, clearNotification } = useNotification()
   const { notifications, showNotifications } = notification
+
   return (
     <header>
       <nav className='mx-auto z-30 flex max-w-7xl items-center justify-between p-6 lg:px-8' aria-label='Global'>
         <div className='flex lg:flex-1'>
           <a href='/' className='-m-1.5 p-1.5'>
-            <span className='sr-only'>Your Company</span>
+            <span className='sr-only'>JET Impresiones 3D</span>
             <img className='h-14 w-auto' src='../../jetLogoLarge.png' alt='logo principal de JET impresiones 3D' />
           </a>
         </div>
-        <div className='flex lg:hidden'>
+        <div className='relative flex lg:hidden'>
           <button
             type='button'
             className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700'
@@ -54,6 +55,11 @@ export default function Navbar () {
           >
             <span className='sr-only'>Open main menu</span>
             <Bars3Icon className='h-6 w-6' aria-hidden='true' />
+            {
+              showNotifications && (
+                <div className='absolute inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900' />
+              )
+            }
           </button>
         </div>
         <PopoverGroup className='hidden lg:flex lg:gap-x-12'>
@@ -122,7 +128,7 @@ export default function Navbar () {
             <InstagramIcon />
           </a>
 
-          <a href='/shoping-cart' className='relative inline-flex p-2 text-sm font-medium text-center rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-400'>
+          <a onClick={clearNotification} href='/shoping-cart' className='relative inline-flex p-2 text-sm font-medium text-center rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-400'>
             <ShoppingCart01Icon />
             {
               showNotifications && (
@@ -139,7 +145,7 @@ export default function Navbar () {
         <div className='fixed inset-0 z-10' />
         <DialogPanel className='fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-8 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
           <div className='flex items-center justify-between'>
-            <a href='#' className='-m-1.5 p-1.5'>
+            <a href='/' className='-m-1.5 p-1.5'>
               <span className='sr-only'>Jet Impresiones 3D</span>
               <img
                 className='h-14 w-auto'
@@ -207,7 +213,7 @@ export default function Navbar () {
                 <div />
               </div>
               <div className='py-4'>
-                <a href='/shoping-cart' className='flex items-center gap-2 -mx-3 rounded-lg px-3 py-2.5 text-base text-gray-900 hover:bg-gray-50'>
+                <a onClick={clearNotification} href='/shoping-cart' className='flex items-center gap-2 -mx-3 rounded-lg px-3 py-2.5 text-base text-gray-900 hover:bg-gray-50'>
                   <span className={`relative inline-flex text-sm font-medium text-center ${showNotifications ? 'p-2' : 'p-0'} pl-0`}>
                     <ShoppingCart01Icon />
                     {

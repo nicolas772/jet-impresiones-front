@@ -12,13 +12,16 @@ export const updateLocalStorage = state => {
 
 const UPDATE_STATE_BY_ACTION = {
   [CART_ACTION_TYPES.ADD_TO_CART]: (state, action) => {
-    const { id } = action.payload
+    const { id, set } = action.payload
     const productInCartIndex = state.findIndex(item => item.id === id)
 
     if (productInCartIndex >= 0) {
       const newState = [
         ...state.slice(0, productInCartIndex),
-        { ...state[productInCartIndex], quantity: state[productInCartIndex].quantity + 1 },
+        {
+          ...state[productInCartIndex],
+          quantity: set ? action.payload.quantity : state[productInCartIndex].quantity + action.payload.quantity
+        },
         ...state.slice(productInCartIndex + 1)
       ]
       updateLocalStorage(newState)
@@ -28,8 +31,7 @@ const UPDATE_STATE_BY_ACTION = {
     const newState = [
       ...state,
       {
-        ...action.payload,
-        quantity: 1
+        ...action.payload
       }
     ]
     updateLocalStorage(newState)

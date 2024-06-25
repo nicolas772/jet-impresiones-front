@@ -47,7 +47,12 @@ export default function ProductReview ({ products }) {
   }
 
   const handleAdd = () => {
-    addToCart(product)
+    const newProduct = {
+      ...product,
+      quantity,
+      set: false
+    }
+    addToCart(newProduct)
     addNotification()
   }
 

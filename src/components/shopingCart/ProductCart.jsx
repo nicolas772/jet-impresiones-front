@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import { useCart } from '../../hooks/useCart'
 
 export default function ProductCart ({ item }) {
-  const { removeFromCart } = useCart()
+  const { removeFromCart, addToCart } = useCart()
   const [quantity, setQuantity] = useState(item.quantity)
   const handleDecrement = () => {
     setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1)) // Evita que la cantidad sea menor que 1
@@ -32,6 +33,15 @@ export default function ProductCart ({ item }) {
   const handleRemove = () => {
     removeFromCart(item)
   }
+
+  useEffect(() => {
+    const newItem = {
+      ...item,
+      quantity,
+      set: true
+    }
+    addToCart(newItem)
+  }, [quantity])
 
   return (
     <div className='pb-4'>

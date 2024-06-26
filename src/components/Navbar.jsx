@@ -116,15 +116,15 @@ export default function Navbar () {
             </Transition>
           </Popover>
 
-          <a href='#' className='text-sm font-semibold leading-6 text-gray-900'>
+          <a href='/print-with-us' className='text-sm font-semibold leading-6 text-gray-900'>
             Imprime con Nosotros
           </a>
-          <a href='#' className='text-sm font-semibold leading-6 text-gray-900'>
+          <a href='/about-us' className='text-sm font-semibold leading-6 text-gray-900'>
             Quienes Somos
           </a>
         </PopoverGroup>
         <div className='hidden lg:flex lg:flex-1 lg:justify-end gap-2'>
-          <a href='https://www.instagram.com/jet.impresiones3d/' target='_blank' className='p-2 rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-400'>
+          <a href='https://www.instagram.com/jet.impresiones3d/' target='_blank' className='p-2 rounded-lg hover:bg-gray-200'>
             <InstagramIcon />
           </a>
 
@@ -191,13 +191,13 @@ export default function Navbar () {
                   )}
                 </Disclosure>
                 <a
-                  href='#'
+                  href='/print-with-us'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
                 >
                   Imprime con Nosotros
                 </a>
                 <a
-                  href='#'
+                  href='about-us'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
                 >
                   Quienes Somos

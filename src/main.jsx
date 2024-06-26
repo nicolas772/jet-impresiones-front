@@ -13,6 +13,8 @@ import ShopingCart from './components/shopingCart/ShopingCart.jsx'
 import DeliveryForm from './components/deliveryForm/DeliveryForm.jsx'
 import { products as initialProducts } from './mocks/products.json'
 import FilteredProducts from './components/FilteredProducts.jsx'
+import PrintWithUs from './components/PrintWithUs.jsx'
+import AboutUs from './components/AboutUs.jsx'
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: 'checkout-delivery',
         element: <DeliveryForm />
+      },
+      {
+        path: 'about-us',
+        element: <AboutUs />
+      },
+      {
+        path: 'print-with-us',
+        element: <PrintWithUs />
       },
       {
         path: 'category/:filter',

@@ -20,7 +20,7 @@ import { Rocket01Icon, HotdogIcon, FlowerPotIcon, InstagramIcon, ShoppingCart01I
 import { useNotification } from '../hooks/useNotification'
 
 const products = [
-  { name: 'Figuras de colección', description: 'Podrás alegrar a tu niño interior.', href: '/category/figuras-accion', icon: Rocket01Icon },
+  { name: 'Figuras de colección', description: 'Podrás alegrar a tu niño interior.', href: '/category/figuras-de-colección', icon: Rocket01Icon },
   { name: 'Maceteros', description: 'Embellece tu jardín y tus plantas.', href: '/category/maceteros', icon: FlowerPotIcon },
   { name: 'Porta Completos', description: 'Saborea tus Hot-Dogs de una forma entretenida!', href: '/category/porta-completos', icon: HotdogIcon }
 ]

@@ -59,7 +59,7 @@ export default function OrderSumary ({ disabled }) {
           ${disabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300'}`}
         disabled={disabled}
       >
-        <p>Ir a Pagar</p>
+        <p>Finalizar compra</p>
       </button>
 
       <div className='flex items-center justify-center gap-2'>

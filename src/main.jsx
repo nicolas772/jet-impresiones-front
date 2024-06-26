@@ -10,7 +10,7 @@ import ErrorPage from './components/ErrorPage.jsx'
 import ProductReview from './components/ProductReview.jsx'
 import Products from './components/Products'
 import ShopingCart from './components/shopingCart/ShopingCart.jsx'
-import DeliveryForm from './components/deliveryForm/DeliveryForm.jsx'
+import Delivery from './components/delivery/Delivery.jsx'
 import { products as initialProducts } from './mocks/products.json'
 import FilteredProducts from './components/FilteredProducts.jsx'
 import PrintWithUs from './components/PrintWithUs.jsx'
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'checkout-delivery',
-        element: <DeliveryForm />
+        element: <Delivery />
       },
       {
         path: 'about-us',

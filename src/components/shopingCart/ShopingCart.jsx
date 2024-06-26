@@ -10,6 +10,7 @@ import { useEffect } from 'react'
 export default function ShopingCart () {
   const { cart } = useCart()
   const { clearNotification } = useNotification()
+  const emptyCart = !cart.length
 
   useEffect(() => {
     clearNotification()
@@ -46,7 +47,7 @@ export default function ShopingCart () {
           </div>
 
           <div className='mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full'>
-            <OrderSumary />
+            <OrderSumary disabled={emptyCart} />
             {/* <GiftCardBox /> */}
           </div>
         </div>

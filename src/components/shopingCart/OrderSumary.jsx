@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useCart } from '../../hooks/useCart'
 import { toFormat } from '../../constants/format'
 
-export default function OrderSumary () {
+export default function OrderSumary ({ disabled }) {
   const { cart } = useCart()
   const [normalPrice, setNormalPrice] = useState(0)
   const [discount, setDiscount] = useState(0)
@@ -53,7 +53,12 @@ export default function OrderSumary () {
         </dl>
       </div>
 
-      <button onClick={toDeliveryForm} className='flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'>
+      <button
+        onClick={toDeliveryForm}
+        className={`flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white 
+          ${disabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300'}`}
+        disabled={disabled}
+      >
         <p>Ir a Pagar</p>
       </button>
 

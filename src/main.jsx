@@ -12,6 +12,7 @@ import Products from './components/Products'
 import ShopingCart from './components/shopingCart/ShopingCart.jsx'
 import DeliveryForm from './components/deliveryForm/DeliveryForm.jsx'
 import { products as initialProducts } from './mocks/products.json'
+import FilteredProducts from './components/FilteredProducts.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,8 +29,12 @@ const router = createBrowserRouter([
         element: <ShopingCart />
       },
       {
-        path: '/checkout-delivery',
+        path: 'checkout-delivery',
         element: <DeliveryForm />
+      },
+      {
+        path: 'category/:filter',
+        element: <FilteredProducts products={initialProducts} />
       },
       {
         path: 'products/:id',

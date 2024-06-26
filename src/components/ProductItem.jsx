@@ -18,7 +18,7 @@ export default function ProductItem ({ item }) {
         <div className='mt-4 flex justify-between gap-1'>
           <div>
             <h3 className='text-sm font-semibold text-gray-700'>
-              <a href={`products/${id}`}>
+              <a href={`/products/${id}`}>
                 <span aria-hidden='true' className='absolute inset-0' />
                 {title}
               </a>

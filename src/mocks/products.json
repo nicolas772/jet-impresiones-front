@@ -10,7 +10,7 @@
       "rating": 4,
       "totalOpinions": 117,
       "stock": 94,
-      "category": "portacompleto",
+      "category": "porta-completos",
       "thumbnail": {
         "src": "../../products/foto1.png",
         "alt": "Two each of gray, white, and black shirts laying flat."
@@ -43,7 +43,7 @@
       "rating": 5,
       "totalOpinions": 167,
       "stock": 94,
-      "category": "macetero",
+      "category": "maceteros",
       "thumbnail": {
         "src": "../../products/foto2.png",
         "alt": "Two each of gray, white, and black shirts laying flat."
@@ -76,7 +76,7 @@
       "rating": 3,
       "totalOpinions": 27,
       "stock": 94,
-      "category": "figurasAccion",
+      "category": "figuras-accion",
       "thumbnail": {
         "src": "../../products/foto3.png",
         "alt": "Two each of gray, white, and black shirts laying flat."

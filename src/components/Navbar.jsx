@@ -15,18 +15,18 @@ import {
   Bars3Icon,
   XMarkIcon
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid' // eslint-disable-line
 import { Rocket01Icon, HotdogIcon, FlowerPotIcon, InstagramIcon, ShoppingCart01Icon } from 'hugeicons-react'
 import { useNotification } from '../hooks/useNotification'
 
 const products = [
-  { name: 'Figuras de colección', description: 'Podrás alegrar a tu niño interior.', href: '#', icon: Rocket01Icon },
-  { name: 'Maceteros', description: 'Embellece tu jardín y tus plantas.', href: '#', icon: FlowerPotIcon },
-  { name: 'Porta Completos', description: 'Saborea tus Hot-Dogs de una forma entretenida!', href: '#', icon: HotdogIcon }
+  { name: 'Figuras de colección', description: 'Podrás alegrar a tu niño interior.', href: '/category/figuras-accion', icon: Rocket01Icon },
+  { name: 'Maceteros', description: 'Embellece tu jardín y tus plantas.', href: '/category/maceteros', icon: FlowerPotIcon },
+  { name: 'Porta Completos', description: 'Saborea tus Hot-Dogs de una forma entretenida!', href: '/category/porta-completos', icon: HotdogIcon }
 ]
 const callsToAction = [
-  { name: 'Ver nuestro proceso', href: '#', icon: PlayCircleIcon },
-  { name: 'Contactanos', href: '#', icon: PhoneIcon }
+  /* { name: 'Ver nuestro proceso', href: '#', icon: PlayCircleIcon },
+  { name: 'Contactanos', href: '#', icon: PhoneIcon } */
 ]
 
 function classNames (...classes) {

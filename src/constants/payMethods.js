@@ -1,0 +1,5 @@
+export const PAY_METHODS = {
+  KHIPU: 'KHIPU',
+  WEBPAY: 'WEBPAY',
+  TRANSFER: 'TRANSFER'
+}

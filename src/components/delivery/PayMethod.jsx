@@ -1,14 +1,15 @@
 // import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-
-const PAY_METHODS = {
-  KHIPU: 'KHIPU',
-  WEBPAY: 'WEBPAY',
-  TRANSFER: 'TRANSFER'
-}
+import { useEffect } from 'react'
+import { usePayMethod } from '../../hooks/usePayMethod'
+import { PAY_METHODS } from '../../constants/payMethods'
 
 export default function PayMethod ({ disabled }) {
-  const [payMethodSelected, setPayMethodSelected] = useState(PAY_METHODS.KHIPU)
+  const { payMethod, setPayMethod } = usePayMethod()
+
+  useEffect(() => {
+    setPayMethod(PAY_METHODS.KHIPU)
+    // eslint-disable-next-line
+  }, [])
 
   // const navigate = useNavigate()
   const toPay = () => {
@@ -16,7 +17,7 @@ export default function PayMethod ({ disabled }) {
   }
 
   const handlePayMethodChange = (event) => {
-    setPayMethodSelected(event.target.value)
+    setPayMethod(event.target.value)
   }
 
   return (
@@ -31,7 +32,7 @@ export default function PayMethod ({ disabled }) {
               type='radio'
               value={PAY_METHODS.KHIPU}
               onChange={handlePayMethodChange}
-              checked={payMethodSelected === PAY_METHODS.KHIPU}
+              checked={payMethod === PAY_METHODS.KHIPU}
               className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
             />
             <img src='https://s3.amazonaws.com/static.khipu.com/buttons/2024/200x75-color.svg' className='w-24 h-auto' />
@@ -43,7 +44,7 @@ export default function PayMethod ({ disabled }) {
               type='radio'
               value={PAY_METHODS.WEBPAY}
               onChange={handlePayMethodChange}
-              checked={payMethodSelected === PAY_METHODS.WEBPAY}
+              checked={payMethod === PAY_METHODS.WEBPAY}
               className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
             />
             <img src='./WebpayPlus.png' className='w-28 h-auto' />
@@ -55,7 +56,7 @@ export default function PayMethod ({ disabled }) {
               type='radio'
               value={PAY_METHODS.TRANSFER}
               onChange={handlePayMethodChange}
-              checked={payMethodSelected === PAY_METHODS.TRANSFER}
+              checked={payMethod === PAY_METHODS.TRANSFER}
               className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
             />
             <label htmlFor='push-nothing' className='block text-md leading-6 text-gray-900'>

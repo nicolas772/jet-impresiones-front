@@ -1,10 +1,11 @@
 // import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { usePayMethod } from '../../hooks/usePayMethod'
 import { PAY_METHODS } from '../../constants/payMethods'
 
-export default function PayMethod ({ disabled }) {
+export default function PayMethod () {
   const { payMethod, setPayMethod } = usePayMethod()
+  const [checkTermsAndConditions, setCheckTermsAndConditions] = useState(false)
 
   useEffect(() => {
     setPayMethod(PAY_METHODS.KHIPU)
@@ -18,6 +19,10 @@ export default function PayMethod ({ disabled }) {
 
   const handlePayMethodChange = (event) => {
     setPayMethod(event.target.value)
+  }
+
+  const handleCheckbox = () => {
+    setCheckTermsAndConditions(prevState => !prevState)
   }
 
   return (
@@ -76,6 +81,8 @@ export default function PayMethod ({ disabled }) {
               name='comments'
               type='checkbox'
               className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
+              checked={checkTermsAndConditions}
+              onChange={handleCheckbox}
             />
             <p className='text-xs leading-2 text-gray-500'>He leído y estoy de acuerdo con los términos y condiciones de la web.<span className='text-red-600'>*</span></p>
           </div>
@@ -86,8 +93,8 @@ export default function PayMethod ({ disabled }) {
         <button
           onClick={toPay}
           className={`flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white 
-          ${disabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300'}`}
-          disabled={disabled}
+          ${!checkTermsAndConditions ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300'}`}
+          disabled={!checkTermsAndConditions}
         >
           <p>Ir a Pagar</p>
         </button>

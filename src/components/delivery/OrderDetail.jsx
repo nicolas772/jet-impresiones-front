@@ -23,6 +23,8 @@ export default function OrderDetail () {
     setDiscount(desc)
   }, [cart])
 
+  const shipPrice = 4500
+
   return (
     <div className='space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6'>
       <p className='text-lg font-semibold text-gray-900 dark:text-white'>Detalle de tu compra</p>
@@ -47,6 +49,13 @@ export default function OrderDetail () {
 
         <div className='space-y-2 border-t pt-4'>
           <dl className='flex items-center justify-between gap-4'>
+            <dt className='text-sm font-normal text-gray-800 dark:text-gray-400'>Envío <span className='text-gray-500'>(precio fijo)</span></dt>
+            <dd className='text-sm font-medium text-gray-900 dark:text-white'>{toFormat(shipPrice)}</dd>
+          </dl>
+        </div>
+
+        <div className='space-y-2 border-t pt-4'>
+          <dl className='flex items-center justify-between gap-4'>
             <dt className='text-sm font-normal text-gray-800 dark:text-gray-400'>Descuento Productos</dt>
             <dd className='text-sm font-medium text-green-600'>-{discount === 0 ? '' : toFormat(discount)}</dd>
           </dl>
@@ -59,7 +68,7 @@ export default function OrderDetail () {
         <dl className='flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700'>
           <dt className='text-sm font-bold text-gray-900 dark:text-white'>Precio Total</dt>
           <dd className='text-base font-bold text-gray-900 dark:text-white'>
-            {toFormat(normalPrice - discount)} <span className='text-sm font-normal'>+ envío</span>
+            {toFormat(normalPrice - discount + shipPrice)}
           </dd>
         </dl>
       </div>

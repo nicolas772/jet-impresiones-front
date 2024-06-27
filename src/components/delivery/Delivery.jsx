@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import OrderDetail from './OrderDetail'
 import ShipmentForm from './ShipmentForm'
 import PayMethod from './PayMethod'
+import PayMethodProvider from '../../context/payMethod'
 
 export default function Delivery () {
   useEffect(() => {
@@ -19,8 +20,10 @@ export default function Delivery () {
           <ShipmentForm />
         </div>
         <div className='mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full'>
-          <OrderDetail />
-          <PayMethod />
+          <PayMethodProvider>
+            <OrderDetail />
+            <PayMethod />
+          </PayMethodProvider>
         </div>
       </div>
     </section>

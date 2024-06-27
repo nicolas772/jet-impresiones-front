@@ -23,23 +23,23 @@ export default function OrderDetail ({ disabled }) {
 
   return (
     <div className='space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6'>
-      <p className='text-xl font-semibold text-gray-900 dark:text-white'>Detalle de tu compra</p>
+      <p className='text-lg font-semibold text-gray-900 dark:text-white'>Detalle de tu compra</p>
 
       <div className='space-y-4'>
         <div className='space-y-2'>
           <dl className='flex items-center justify-between gap-4'>
-            <dt className='text-base font-normal text-gray-500 dark:text-gray-400'>Precio Normal</dt>
-            <dd className='text-base font-medium text-gray-900 dark:text-white'>{toFormat(normalPrice)}</dd>
+            <dt className='text-sm font-normal text-gray-500 dark:text-gray-400'>Precio Normal</dt>
+            <dd className='text-sm font-medium text-gray-900 dark:text-white'>{toFormat(normalPrice)}</dd>
           </dl>
 
           <dl className='flex items-center justify-between gap-4'>
-            <dt className='text-base font-normal text-gray-500 dark:text-gray-400'>Descuentos</dt>
-            <dd className='text-base font-medium text-green-600'>-{discount === 0 ? '' : toFormat(discount)}</dd>
+            <dt className='text-sm font-normal text-gray-500 dark:text-gray-400'>Descuentos</dt>
+            <dd className='text-sm font-medium text-green-600'>-{discount === 0 ? '' : toFormat(discount)}</dd>
           </dl>
         </div>
 
         <dl className='flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700'>
-          <dt className='text-base font-bold text-gray-900 dark:text-white'>Precio Total</dt>
+          <dt className='text-sm font-bold text-gray-900 dark:text-white'>Precio Total</dt>
           <dd className='text-base font-bold text-gray-900 dark:text-white'>
             {toFormat(normalPrice - discount)} <span className='text-sm font-normal'>+ envío</span>
           </dd>

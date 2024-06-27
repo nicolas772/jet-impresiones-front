@@ -1,8 +1,12 @@
+import { useEffect } from 'react'
 import OrderDetail from './OrderDetail'
 import ShipmentForm from './ShipmentForm'
 import PayMethod from './PayMethod'
 
 export default function Delivery () {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <section className='bg-white py-4 px-6 antialiased dark:bg-gray-900 md:py-6'>
       <div className='mx-auto max-w-screen-xl px-4 2xl:px-0'>
@@ -19,7 +23,6 @@ export default function Delivery () {
           <PayMethod />
         </div>
       </div>
-
     </section>
   )
 }

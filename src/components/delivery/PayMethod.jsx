@@ -9,9 +9,8 @@ export default function PayMethod ({ disabled }) {
 
   return (
     <div className='rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6'>
-      <p className='text-xl font-semibold text-gray-900 dark:text-white'>Método de pago</p>
-
-      <fieldset className='mb-8 mt-4'>
+      <p className='text-lg font-semibold text-gray-900 dark:text-white'>Método de pago</p>
+      <fieldset className='mb-8 mt-2'>
         <div className='mt-6 space-y-6'>
           <div className='flex items-center gap-x-3'>
             <input
@@ -40,7 +39,7 @@ export default function PayMethod ({ disabled }) {
       <p className='text-sm text-gray-700'>
         Tus datos personales se utilizarán para procesar tu pedido, mejorar tu experiencia en esta web y otros propósitos descritos en nuestra política de privacidad.
       </p>
-      <div className='my-6'>
+      <div className='my-8'>
         <div className='relative flex gap-x-3'>
           <div className='flex h-6 items-center'>
             <input
@@ -51,7 +50,7 @@ export default function PayMethod ({ disabled }) {
             />
           </div>
           <div className='text-xs leading-2'>
-            <p className='text-gray-500'>He leído y estoy de acuerdo con los términos y condiciones de la web</p>
+            <p className='text-gray-500'>He leído y estoy de acuerdo con los términos y condiciones de la web. <span className='text-red-600'>*</span></p>
           </div>
         </div>
       </div>

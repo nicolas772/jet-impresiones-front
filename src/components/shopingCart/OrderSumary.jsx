@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react'
 import { useCart } from '../../hooks/useCart'
 import { toFormat } from '../../constants/format'
 
-export default function OrderSumary ({ disabled }) {
+export default function OrderSumary () {
   const { cart } = useCart()
   const [normalPrice, setNormalPrice] = useState(0)
   const [discount, setDiscount] = useState(0)
+  const emptyCart = !cart.length
 
   useEffect(() => {
     const total = cart.reduce(
@@ -56,8 +57,8 @@ export default function OrderSumary ({ disabled }) {
       <button
         onClick={toDeliveryForm}
         className={`flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white 
-          ${disabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300'}`}
-        disabled={disabled}
+          ${emptyCart ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300'}`}
+        disabled={emptyCart}
       >
         <p>Finalizar compra</p>
       </button>

@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { useCart } from '../../hooks/useCart'
 import { toFormat } from '../../constants/format'
 
-export default function OrderDetail ({ disabled }) {
+export default function OrderDetail () {
   const { cart } = useCart()
   const [normalPrice, setNormalPrice] = useState(0)
   const [discount, setDiscount] = useState(0)
+
+  console.log(cart)
 
   useEffect(() => {
     const total = cart.reduce(
@@ -26,14 +28,30 @@ export default function OrderDetail ({ disabled }) {
       <p className='text-lg font-semibold text-gray-900 dark:text-white'>Detalle de tu compra</p>
 
       <div className='space-y-4'>
-        <div className='space-y-2'>
-          <dl className='flex items-center justify-between gap-4'>
-            <dt className='text-sm font-normal text-gray-500 dark:text-gray-400'>Precio Normal</dt>
-            <dd className='text-sm font-medium text-gray-900 dark:text-white'>{toFormat(normalPrice)}</dd>
-          </dl>
+        <div className='space-y-3'>
+          {
+            cart.map((item) => (
+              <dl key={`${item.id}-${item.selectedColor}`} className='flex items-start justify-between gap-4'>
+                <dt className='text-sm font-normal text-gray-800 dark:text-gray-400'>
+                  <h4>{item.title}</h4>
+                  <div className='flex gap-2 text-xs text-gray-500'>
+                    <span>Cantidad: {item.quantity}</span>
+                    <span>Color: {item.selectedColor.name}</span>
+                  </div>
+                </dt>
+                <dd className='text-sm font-medium text-gray-900 dark:text-white'>{toFormat(item.price * item.quantity)}</dd>
+              </dl>
+            ))
+          }
+        </div>
 
+        <div className='space-y-2 border-t pt-4'>
           <dl className='flex items-center justify-between gap-4'>
-            <dt className='text-sm font-normal text-gray-500 dark:text-gray-400'>Descuentos</dt>
+            <dt className='text-sm font-normal text-gray-800 dark:text-gray-400'>Descuento Productos</dt>
+            <dd className='text-sm font-medium text-green-600'>-{discount === 0 ? '' : toFormat(discount)}</dd>
+          </dl>
+          <dl className='flex items-center justify-between gap-4'>
+            <dt className='text-sm font-normal text-gray-800 dark:text-gray-400'>Descuento Transferencia</dt>
             <dd className='text-sm font-medium text-green-600'>-{discount === 0 ? '' : toFormat(discount)}</dd>
           </dl>
         </div>

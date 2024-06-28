@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useCart } from '../../hooks/useCart'
 import { toFormat } from '../../constants/format'
-import { usePayMethod } from '../../hooks/usePayMethod'
+import { useFormCheckout } from '../../hooks/useFormCheckout'
 
 const SHIP_PRICE = 4500
 const TRANSFER_DISCOUNT_PERCENTAGE = 5
@@ -12,7 +12,7 @@ export default function OrderDetail () {
   const [transferDiscount, setTransferDiscount] = useState(0)
   const [finalPriceNoTransfer, setFinalPriceNoTransfer] = useState(0)
   const [finalPriceTransfer, setFinalPriceTransfer] = useState(0)
-  const { isTransferencia } = usePayMethod()
+  const { isTransferencia } = useFormCheckout()
 
   useEffect(() => {
     const total = cart.reduce(

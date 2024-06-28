@@ -1,21 +1,17 @@
 // import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { usePayMethod } from '../../hooks/usePayMethod'
+import { useFormCheckout } from '../../hooks/useFormCheckout'
 import { PAY_METHODS } from '../../constants/payMethods'
 
 export default function PayMethod () {
-  const { payMethod, setPayMethod } = usePayMethod()
+  const { payMethod, setPayMethod } = useFormCheckout()
   const [checkTermsAndConditions, setCheckTermsAndConditions] = useState(false)
+  const { handleSubmit } = useFormCheckout()
 
   useEffect(() => {
     setPayMethod(PAY_METHODS.KHIPU)
     // eslint-disable-next-line
   }, [])
-
-  // const navigate = useNavigate()
-  const toPay = () => {
-    console.log('pagar')
-  }
 
   const handlePayMethodChange = (event) => {
     setPayMethod(event.target.value)
@@ -91,7 +87,7 @@ export default function PayMethod () {
 
       <div className='space-y-4'>
         <button
-          onClick={toPay}
+          onClick={handleSubmit}
           className={`flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white 
           ${!checkTermsAndConditions ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300'}`}
           disabled={!checkTermsAndConditions}

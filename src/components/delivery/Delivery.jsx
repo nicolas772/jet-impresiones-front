@@ -2,14 +2,14 @@ import { useEffect } from 'react'
 import OrderDetail from './OrderDetail'
 import ShipmentForm from './ShipmentForm'
 import PayMethod from './PayMethod'
-import { PayMethodProvider } from '../../context/payMethod'
+import { FormCheckoutProvider } from '../../context/form'
 
 export default function Delivery () {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
   return (
-    <PayMethodProvider>
+    <FormCheckoutProvider>
       <section className='bg-white py-4 px-6 antialiased dark:bg-gray-900 md:py-6'>
         <div className='mx-auto max-w-screen-xl px-4 2xl:px-0'>
           <h2 className='text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl'>
@@ -28,6 +28,6 @@ export default function Delivery () {
           </div>
         </div>
       </section>
-    </PayMethodProvider>
+    </FormCheckoutProvider>
   )
 }

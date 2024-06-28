@@ -35,7 +35,7 @@ export default function OrderDetail () {
 
   return (
     <div className='space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6'>
-      <p className='text-lg font-semibold text-gray-900 dark:text-white'>Detalle de tu compra</p>
+      <h3 className='text-lg font-semibold text-gray-900 dark:text-white'>Detalle de compra</h3>
 
       <div className='space-y-4'>
         <div className='space-y-3'>

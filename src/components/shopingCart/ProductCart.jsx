@@ -52,7 +52,7 @@ export default function ProductCart ({ item }) {
       <div className='rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6'>
         <div className='space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0'>
           <a href={`products/${item.id}`} className='shrink-0 md:order-1'>
-            <img className='h-28 w-28' src={item.thumbnail.src} alt={item.thumbnail.alt} />
+            <img className='h-28 w-28 rounded-lg border' src={item.thumbnail.src} alt={item.thumbnail.alt} />
           </a>
 
           <div className='flex items-center justify-between md:order-3 md:justify-end'>

@@ -2,8 +2,8 @@ import React from 'react'
 import { useFormCheckout } from '../../hooks/useFormCheckout'
 
 export default function ShipmentForm () {
-  const { formData, handleInputChange, errors } = useFormCheckout()
-  console.log('errors: ', errors)
+  const { formData, handleInputChange, handleBlur, errors } = useFormCheckout()
+
   return (
     <div>
       <div className='space-y-12 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6'>
@@ -26,8 +26,13 @@ export default function ShipmentForm () {
                   autoComplete='given-name'
                   value={formData.firstName}
                   onChange={handleInputChange}
-                  className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                  onBlur={handleBlur}
+                  className={
+                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    ${errors.firstName ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
+                  }
                 />
+                {errors.firstName && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.firstName}</p>}
               </div>
             </div>
 
@@ -44,8 +49,13 @@ export default function ShipmentForm () {
                   autoComplete='family-name'
                   value={formData.lastName}
                   onChange={handleInputChange}
-                  className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                  onBlur={handleBlur}
+                  className={
+                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    ${errors.lastName ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
+                  }
                 />
+                {errors.lastName && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.lastName}</p>}
               </div>
             </div>
             <div className='sm:col-span-3'>
@@ -62,8 +72,13 @@ export default function ShipmentForm () {
                   placeholder='example@domain.com'
                   value={formData.email}
                   onChange={handleInputChange}
-                  className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                  onBlur={handleBlur}
+                  className={
+                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    ${errors.email ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
+                  }
                 />
+                {errors.email && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.email}</p>}
               </div>
             </div>
 
@@ -83,8 +98,13 @@ export default function ShipmentForm () {
                   placeholder='912345678'
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                  onBlur={handleBlur}
+                  className={
+                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    ${errors.phone ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
+                  }
                 />
+                {errors.phone && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.phone}</p>}
               </div>
             </div>
 
@@ -102,8 +122,13 @@ export default function ShipmentForm () {
                   placeholder='Ingresa el nombre de tu calle'
                   value={formData.streetAdress}
                   onChange={handleInputChange}
-                  className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                  onBlur={handleBlur}
+                  className={
+                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    ${errors.streetAdress ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
+                  }
                 />
+                {errors.streetAdress && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.streetAdress}</p>}
               </div>
             </div>
 
@@ -121,8 +146,13 @@ export default function ShipmentForm () {
                   placeholder='Ingresa el número de tu dirección'
                   value={formData.numberAdress}
                   onChange={handleInputChange}
-                  className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                  onBlur={handleBlur}
+                  className={
+                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    ${errors.numberAdress ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
+                  }
                 />
+                {errors.numberAdress && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.numberAdress}</p>}
               </div>
             </div>
 
@@ -141,8 +171,13 @@ export default function ShipmentForm () {
                   placeholder='Ej: Casa 502'
                   value={formData.apartment}
                   onChange={handleInputChange}
-                  className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                  onBlur={handleBlur}
+                  className={
+                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    ${errors.lastName ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
+                  }
                 />
+                {errors.apartment && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.apartment}</p>}
               </div>
             </div>
 
@@ -158,13 +193,19 @@ export default function ShipmentForm () {
                   autoComplete='region'
                   value={formData.region}
                   onChange={handleInputChange}
-                  className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
+                  onBlur={handleBlur}
+                  className={
+                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    ${errors.region ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
+                  }
                 >
                   <option>Metropolitana</option>
                   <option>Maule</option>
                   <option>Bio Bio</option>
                 </select>
+                {errors.region && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.region}</p>}
               </div>
+
             </div>
             <div className='sm:col-span-2'>
               <label htmlFor='comuna' className='block text-sm font-medium leading-6 text-gray-900'>
@@ -178,12 +219,17 @@ export default function ShipmentForm () {
                   autoComplete='off'
                   value={formData.comuna}
                   onChange={handleInputChange}
-                  className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
+                  onBlur={handleBlur}
+                  className={
+                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    ${errors.comuna ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
+                  }
                 >
                   <option>Santiago</option>
                   <option>Pedro Aguirre Cerda</option>
                   <option>Linares</option>
                 </select>
+                {errors.comuna && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.comuna}</p>}
               </div>
             </div>
 
@@ -200,8 +246,13 @@ export default function ShipmentForm () {
                   autoComplete='postal-code'
                   value={formData.postalCode}
                   onChange={handleInputChange}
-                  className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                  onBlur={handleBlur}
+                  className={
+                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    ${errors.postalCode ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
+                  }
                 />
+                {errors.postalCode && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.postalCode}</p>}
               </div>
             </div>
             <div className='sm:col-span-6'>
@@ -219,8 +270,13 @@ export default function ShipmentForm () {
                   autoComplete='off'
                   value={formData.orderNotes}
                   onChange={handleInputChange}
-                  className='block resize-none w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                  onBlur={handleBlur}
+                  className={
+                    `block resize-none w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    ${errors.orderNotes ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
+                  }
                 />
+                {errors.orderNotes && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.orderNotes}</p>}
               </div>
             </div>
           </div>

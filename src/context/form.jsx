@@ -29,7 +29,21 @@ export function FormCheckoutProvider ({ children }) {
     }
     setFormData(newData)
   }
-
+  const validateField = (name, value) => {
+    let error = ''
+    if (!value) {
+      error = 'Este campo es requerido'
+    }
+    return error
+  }
+  const handleBlur = (e) => {
+    const { name, value } = e.target
+    const error = validateField(name, value)
+    setErrors({
+      ...errors,
+      [name]: error
+    })
+  }
   const handleValidation = () => {
     const newErrors = {}
     const requiredFields = [
@@ -45,7 +59,7 @@ export function FormCheckoutProvider ({ children }) {
 
     requiredFields.forEach(field => {
       if (!formData[field]) {
-        newErrors[field] = `${field} es requerido`
+        newErrors[field] = 'Este campo es requerido'
       }
     })
 
@@ -58,9 +72,7 @@ export function FormCheckoutProvider ({ children }) {
     if (handleValidation()) {
       console.log('Formulario válido', formData)
     } else {
-      (
-        console.log('Formulario invalido, mostrar errores', errors)
-      )
+      console.log('Formulario invalido, mostrar errores', errors)
     }
   }
 
@@ -73,6 +85,7 @@ export function FormCheckoutProvider ({ children }) {
         handleInputChange,
         handleValidation,
         handleSubmit,
+        handleBlur,
         errors,
         formData
       }}

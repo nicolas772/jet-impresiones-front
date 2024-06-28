@@ -15,6 +15,7 @@ import { products as initialProducts } from './mocks/products.json'
 import FilteredProducts from './components/FilteredProducts.jsx'
 import PrintWithUs from './components/PrintWithUs.jsx'
 import AboutUs from './components/AboutUs.jsx'
+import OrderConfirmation from './components/OrderConfirmation.jsx'
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: 'print-with-us',
         element: <PrintWithUs />
+      },
+      {
+        path: 'order-confirmation',
+        element: <OrderConfirmation />
       },
       {
         path: 'category/:filter',

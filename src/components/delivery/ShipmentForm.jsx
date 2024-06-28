@@ -1,8 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFormCheckout } from '../../hooks/useFormCheckout'
+import { regiones } from '../../mocks/regionesChile.json'
+
+const REGION_DEFAULT = '13' // REGION METROPOLITANA POR DEFECTO
 
 export default function ShipmentForm () {
   const { formData, handleInputChange, handleBlur, errors } = useFormCheckout()
+  const [actualRegion, setActualRegion] = useState(REGION_DEFAULT) // region metropolitana por defecto
+  const [actualCommunes, setActualComunnes] = useState(
+    regiones.find(region => region.number === REGION_DEFAULT).communes
+  )
+
+  console.log(formData.comuna)
+  console.log(formData.region)
+
+  const handleRegion = (event) => {
+    setActualRegion(event.target.value)
+    handleInputChange(event)
+  }
+
+  useEffect(() => {
+    setActualComunnes(
+      regiones.find(region => region.number === actualRegion).communes
+    )
+  }, [actualRegion])
 
   return (
     <div>
@@ -139,7 +160,7 @@ export default function ShipmentForm () {
               </label>
               <div className='mt-2'>
                 <input
-                  type='text'
+                  type='number'
                   name='numberAdress'
                   id='numberAdress'
                   autoComplete='off'
@@ -174,7 +195,7 @@ export default function ShipmentForm () {
                   onBlur={handleBlur}
                   className={
                     `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
-                    ${errors.lastName ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
+                    ${errors.apartment ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
                   }
                 />
                 {errors.apartment && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.apartment}</p>}
@@ -192,16 +213,20 @@ export default function ShipmentForm () {
                   name='region'
                   autoComplete='region'
                   value={formData.region}
-                  onChange={handleInputChange}
+                  onChange={handleRegion}
                   onBlur={handleBlur}
                   className={
                     `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
                     ${errors.region ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
                   }
                 >
-                  <option>Metropolitana</option>
-                  <option>Maule</option>
-                  <option>Bio Bio</option>
+                  <option value='' default>Selecciona una región</option>
+                  {
+                    regiones.map((region) => (
+                      <option key={region.number} value={region.number}>{region.name}</option>
+                    ))
+                  }
+
                 </select>
                 {errors.region && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.region}</p>}
               </div>
@@ -225,9 +250,12 @@ export default function ShipmentForm () {
                     ${errors.comuna ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
                   }
                 >
-                  <option>Santiago</option>
-                  <option>Pedro Aguirre Cerda</option>
-                  <option>Linares</option>
+                  <option value='' default>Selecciona una comuna</option>
+                  {
+                    actualCommunes.map(comuna => (
+                      <option key={comuna} value={comuna}>{comuna}</option>
+                    ))
+                  }
                 </select>
                 {errors.comuna && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.comuna}</p>}
               </div>

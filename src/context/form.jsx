@@ -1,6 +1,17 @@
 import React, { createContext, useState } from 'react'
 import { PAY_METHODS } from '../constants/payMethods'
 
+const REQUIRED_FIELDS = [
+  'firstName',
+  'lastName',
+  'email',
+  'streetAdress',
+  'numberAdress',
+  'region',
+  'comuna',
+  'postalCode'
+]
+
 export const FormCheckoutContext = createContext()
 
 export function FormCheckoutProvider ({ children }) {
@@ -27,11 +38,14 @@ export function FormCheckoutProvider ({ children }) {
       ...formData,
       [name]: value
     }
+    if (name === 'region') {
+      newData.comuna = ''
+    }
     setFormData(newData)
   }
   const validateField = (name, value) => {
     let error = ''
-    if (!value) {
+    if (!value && REQUIRED_FIELDS.includes(name)) {
       error = 'Este campo es requerido'
     }
     return error
@@ -46,18 +60,7 @@ export function FormCheckoutProvider ({ children }) {
   }
   const handleValidation = () => {
     const newErrors = {}
-    const requiredFields = [
-      'firstName',
-      'lastName',
-      'email',
-      'streetAdress',
-      'numberAdress',
-      'region',
-      'comuna',
-      'postalCode'
-    ]
-
-    requiredFields.forEach(field => {
+    REQUIRED_FIELDS.forEach(field => {
       if (!formData[field]) {
         newErrors[field] = 'Este campo es requerido'
       }

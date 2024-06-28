@@ -10,10 +10,6 @@ export default function ShipmentForm () {
   const [actualCommunes, setActualComunnes] = useState(
     regiones.find(region => region.number === REGION_DEFAULT).communes
   )
-
-  console.log(formData.comuna)
-  console.log(formData.region)
-
   const handleRegion = (event) => {
     setActualRegion(event.target.value)
     handleInputChange(event)

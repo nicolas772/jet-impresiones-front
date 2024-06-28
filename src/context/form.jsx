@@ -48,6 +48,11 @@ export function FormCheckoutProvider ({ children }) {
     if (!value && REQUIRED_FIELDS.includes(name)) {
       error = 'Este campo es requerido'
     }
+    if (name === 'email' && value) {
+      if (!/\S+@\S+\.\S+/.test(value)) {
+        error = 'El email no es válido'
+      }
+    }
     return error
   }
   const handleBlur = (e) => {
@@ -60,9 +65,11 @@ export function FormCheckoutProvider ({ children }) {
   }
   const handleValidation = () => {
     const newErrors = {}
+
     REQUIRED_FIELDS.forEach(field => {
-      if (!formData[field]) {
-        newErrors[field] = 'Este campo es requerido'
+      const error = validateField(field, formData[field])
+      if (error) {
+        newErrors[field] = error
       }
     })
 

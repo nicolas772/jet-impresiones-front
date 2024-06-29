@@ -69,7 +69,7 @@ export default function PositiveConfirmation () {
               La orden #{order} está siendo procesada para el envío.
             </p>
             <p className='text-md leading-6 text-gray-600'>
-              Puedes <a href='/*' title='' className='inline-flex items-center gap-2 font-medium text-primary-700 underline hover:no-underline dark:text-primary-500'>descargar aquí</a> tu orden.
+              Puedes <a href='#' title='' className='inline-flex items-center gap-2 font-medium text-primary-700 underline hover:no-underline dark:text-primary-500'>descargar aquí</a> tu orden.
             </p>
           </div>
         </div>

@@ -15,7 +15,7 @@ import { products as initialProducts } from './mocks/products.json'
 import FilteredProducts from './components/FilteredProducts.jsx'
 import PrintWithUs from './components/PrintWithUs.jsx'
 import AboutUs from './components/AboutUs.jsx'
-import OrderConfirmation from './components/OrderConfirmation.jsx'
+import Confirmation from './components/orderConfirmation/Confirmation.jsx'
 
 const router = createBrowserRouter([
   {
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'order-confirmation',
-        element: <OrderConfirmation />
+        element: <Confirmation />
       },
       {
         path: 'category/:filter',

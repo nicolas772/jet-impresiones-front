@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react'
 import { PAY_METHODS } from '../constants/payMethods'
+import { useNavigate } from 'react-router-dom'
 
 const REQUIRED_FIELDS = [
   'firstName',
@@ -17,6 +18,7 @@ export const FormCheckoutContext = createContext()
 export function FormCheckoutProvider ({ children }) {
   const [payMethod, setPayMethod] = useState(PAY_METHODS.KHIPU)
   const [errors, setErrors] = useState({})
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -80,7 +82,7 @@ export function FormCheckoutProvider ({ children }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (handleValidation()) {
-      console.log('Formulario válido', formData)
+      navigate('/order-confirmation')
     } else {
       console.log('Formulario invalido, mostrar errores', errors)
     }

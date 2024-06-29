@@ -1,5 +1,5 @@
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
-import { toFormat } from '../constants/format'
+import { toFormat } from '../../constants/format'
 
 const order = 2348793
 const datosEnvio = {
@@ -55,18 +55,21 @@ const item = {
   ]
 }
 
-export default function OrderConfirmation () {
+export default function PositiveConfirmation () {
   return (
     <section className='bg-white py-4 px-6 antialiased'>
       <div className='mx-auto max-w-screen-md'>
         <div className='flex flex-col items-center gap-3 pb-8 border-b'> {/* encabezado */}
           <CheckCircleIcon className='h-10 w-10 text-green-700' />
-          <div className='flex flex-col items-center text-center gap-1'>
+          <div className='flex flex-col items-center text-center gap-2'>
             <h1 className='text-2xl font-bold text-gray-900'>
               Hemos recibido tu pedido!
             </h1>
             <p className='text-md leading-6 text-gray-600'>
-              Tu orden #{order} está siendo procesada para el envío
+              La orden #{order} está siendo procesada para el envío.
+            </p>
+            <p className='text-md leading-6 text-gray-600'>
+              Puedes <a href='/*' title='' className='inline-flex items-center gap-2 font-medium text-primary-700 underline hover:no-underline dark:text-primary-500'>descargar aquí</a> tu orden.
             </p>
           </div>
         </div>

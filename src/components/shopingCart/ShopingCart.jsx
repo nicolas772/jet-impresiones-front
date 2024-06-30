@@ -18,7 +18,7 @@ export default function ShopingCart () {
   return (
     <section className='bg-white py-4 px-6 antialiased dark:bg-gray-900 md:py-6'>
       <div className='mx-auto max-w-screen-xl px-4 2xl:px-0'>
-        <h2 className='text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl'>
+        <h2 className='text-xl font-bold tracking-tight text-gray-600 uppercase dark:text-white'>
           Tu Carrito
         </h2>
         <p className='py-2 text-gray-600'>
@@ -32,7 +32,7 @@ export default function ShopingCart () {
               ))
             }
             <div className='hidden xl:mt-8 xl:block'>
-              <h3 className='text-2xl font-semibold text-gray-900 dark:text-white'>Lo más vendido</h3>
+              <h3 className='text-lg font-bold tracking-tight text-gray-600 uppercase'>Lo más vendido</h3>
               <div className='mt-6 grid grid-cols-3 gap-4 sm:mt-8'>
                 {
             popularProducts.map((product) => (

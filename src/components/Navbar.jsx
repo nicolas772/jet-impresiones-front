@@ -16,7 +16,7 @@ import {
   XMarkIcon
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid' // eslint-disable-line
-import { Rocket01Icon, HotdogIcon, FlowerPotIcon, InstagramIcon, ShoppingCart01Icon, TiktokIcon } from 'hugeicons-react'
+import { Rocket01Icon, HotdogIcon, FlowerPotIcon, ShoppingCart01Icon } from 'hugeicons-react'
 import { useNotification } from '../hooks/useNotification'
 
 const products = [
@@ -125,10 +125,10 @@ export default function Navbar () {
         </PopoverGroup>
         <div className='hidden lg:flex lg:flex-1 lg:justify-end gap-2'>
           <a href='https://www.tiktok.com/@jet.impresiones.3' target='_blank' className='p-2 rounded-lg hover:bg-gray-200'>
-            <img src='./tik-tok.png' alt='logo de tik tok' className='w-6 ' />
+            <img src='/tik-tok.png' alt='logo de tik tok' className='w-6 ' />
           </a>
           <a href='https://www.instagram.com/jet.impresiones3d/' target='_blank' className='p-2 rounded-lg hover:bg-gray-200'>
-            <img src='./instagram.png' alt='logo de instagram' className='w-6 ' />
+            <img src='/instagram.png' alt='logo de instagram' className='w-6 ' />
           </a>
 
           <a onClick={clearNotification} href='/shoping-cart' className='relative inline-flex p-2 text-sm font-medium text-center rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-400'>

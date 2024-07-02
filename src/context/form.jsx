@@ -96,7 +96,11 @@ export function FormCheckoutProvider ({ children }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (handleValidation()) {
-      navigate('/order-confirmation')
+      if (payMethod === PAY_METHODS.TRANSFER) {
+        navigate('/transfer-confirmation')
+      } else {
+        navigate('/order-confirmation')
+      }
     } else {
       console.log('Formulario invalido, mostrar errores', errors)
     }

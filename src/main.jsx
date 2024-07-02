@@ -16,6 +16,7 @@ import FilteredProducts from './components/FilteredProducts.jsx'
 import PrintWithUs from './components/PrintWithUs.jsx'
 import AboutUs from './components/AboutUs.jsx'
 import Confirmation from './components/orderConfirmation/Confirmation.jsx'
+import TransferConfirmation from './components/orderConfirmation/TransferConfirmation.jsx'
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: 'order-confirmation',
         element: <Confirmation />
+      },
+      {
+        path: 'transfer-confirmation',
+        element: <TransferConfirmation />
       },
       {
         path: 'category/:filter',

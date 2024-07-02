@@ -4,9 +4,8 @@ import { useFormCheckout } from '../../hooks/useFormCheckout'
 import { PAY_METHODS } from '../../constants/payMethods'
 
 export default function PayMethod () {
-  const { payMethod, setPayMethod } = useFormCheckout()
+  const { payMethod, setPayMethod, handleSubmit } = useFormCheckout()
   const [checkTermsAndConditions, setCheckTermsAndConditions] = useState(false)
-  const { handleSubmit } = useFormCheckout()
 
   useEffect(() => {
     setPayMethod(PAY_METHODS.KHIPU)

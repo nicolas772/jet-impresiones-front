@@ -1,11 +1,13 @@
 import React, { createContext, useState } from 'react'
 import { PAY_METHODS } from '../constants/payMethods'
 import { useNavigate } from 'react-router-dom'
+import { validateRut, formatRut } from '@fdograph/rut-utilities'
 
 const REQUIRED_FIELDS = [
   'firstName',
   'lastName',
   'email',
+  'rut',
   'streetAdress',
   'numberAdress',
   'region',
@@ -25,6 +27,7 @@ export function FormCheckoutProvider ({ children }) {
     lastName: '',
     email: '',
     phone: '',
+    rut: '',
     streetAdress: '',
     numberAdress: '',
     apartment: '',
@@ -53,6 +56,17 @@ export function FormCheckoutProvider ({ children }) {
     if (name === 'email' && value) {
       if (!/\S+@\S+\.\S+/.test(value)) {
         error = 'El email no es válido'
+      }
+    }
+    if (name === 'rut' && value) {
+      if (!validateRut(value)) {
+        error = 'El rut no es válido.'
+      } else {
+        const newData = {
+          ...formData,
+          [name]: formatRut(value)
+        }
+        setFormData(newData)
       }
     }
     return error

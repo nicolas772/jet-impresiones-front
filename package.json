@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fdograph/rut-utilities": "^1.4.0",
     "@headlessui/react": "^2.0.4",
     "@heroicons/react": "^2.1.4",
     "@tailwindcss/forms": "^0.5.7",

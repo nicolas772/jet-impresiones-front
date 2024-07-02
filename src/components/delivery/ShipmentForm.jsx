@@ -41,6 +41,7 @@ export default function ShipmentForm () {
                   name='firstName'
                   id='firstName'
                   autoComplete='given-name'
+                  placeholder='Ingresa tu nombre'
                   value={formData.firstName}
                   onChange={handleInputChange}
                   onBlur={handleBlur}
@@ -64,6 +65,7 @@ export default function ShipmentForm () {
                   name='lastName'
                   id='lastName'
                   autoComplete='family-name'
+                  placeholder='Ingresa tu apellido'
                   value={formData.lastName}
                   onChange={handleInputChange}
                   onBlur={handleBlur}
@@ -117,11 +119,38 @@ export default function ShipmentForm () {
                   onChange={handleInputChange}
                   onBlur={handleBlur}
                   className={
-                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    `remove-arrow block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
                     ${errors.phone ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
                   }
                 />
                 {errors.phone && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.phone}</p>}
+              </div>
+            </div>
+
+            <div className='sm:col-span-3'>
+              <label htmlFor='rut' className='block text-sm font-medium leading-6 text-gray-900'>
+                RUT
+                <span className='text-red-600'>*</span>
+                <span className='font-normal'>
+                  &nbsp;(sin puntos y con guión)
+                </span>
+              </label>
+              <div className='mt-2'>
+                <input
+                  type='text'
+                  name='rut'
+                  id='rut'
+                  autoComplete=''
+                  placeholder='12345678-9'
+                  value={formData.rut}
+                  onChange={handleInputChange}
+                  onBlur={handleBlur}
+                  className={
+                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    ${errors.rut ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
+                  }
+                />
+                {errors.rut && <p className='text-red-600 text-xs pt-1 pl-1'>{errors.rut}</p>}
               </div>
             </div>
 
@@ -165,7 +194,7 @@ export default function ShipmentForm () {
                   onChange={handleInputChange}
                   onBlur={handleBlur}
                   className={
-                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    `remove-arrow block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
                     ${errors.numberAdress ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
                   }
                 />
@@ -264,7 +293,7 @@ export default function ShipmentForm () {
               </label>
               <div className='mt-2'>
                 <input
-                  type='text'
+                  type='number'
                   name='postalCode'
                   id='postalCode'
                   autoComplete='postal-code'
@@ -272,7 +301,7 @@ export default function ShipmentForm () {
                   onChange={handleInputChange}
                   onBlur={handleBlur}
                   className={
-                    `block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
+                    `remove-arrow block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset placeholder:text-gray-400 sm:text-sm sm:leading-6
                     ${errors.postalCode ? 'ring-red-600 focus:ring-2 focus:ring-inset focus:ring-red-600 focus:border-0' : 'ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500'}`
                   }
                 />

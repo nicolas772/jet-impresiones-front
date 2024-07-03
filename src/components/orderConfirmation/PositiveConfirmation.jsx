@@ -76,7 +76,7 @@ export default function PositiveConfirmation () {
         <div className='flex flex-col sm:flex-row py-8 border-b'>
           <div className='flex-1'>
             <h1 className='text-sm font-bold text-gray-500 uppercase font-roboto'>
-              Dirección de envío
+              Datos de envío
             </h1>
             <div className='pt-6 pr-3 text-sm text-gray-900 flex flex-col gap-3'>
               <p>{datosEnvio.nombre + ' ' + datosEnvio.apellido}</p>

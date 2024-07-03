@@ -197,6 +197,10 @@ export default function TransferConfirmation () {
                 <dt className='text-sm font-normal text-gray-800 dark:text-gray-400'>Descuento Productos</dt>
                 <dd className='text-sm font-medium text-green-600'>-{discount === 0 ? '' : toFormat(discount)}</dd>
               </dl>
+              <dl className='flex items-center justify-between gap-4'>
+                <dt className='text-sm font-normal text-gray-800 dark:text-gray-400'>Descuento Transferencia</dt>
+                <dd className='text-sm font-medium text-green-600'>-{toFormat(230)}</dd>
+              </dl>
             </div>
             <div className='space-y-2 border-t pt-4'>
               <dl className='flex items-center justify-between gap-4'>

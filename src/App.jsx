@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 // import BackgroundAnimated from './components/BackgroundAnimated'
 import { CartProvider } from './context/cart'
 import { NotificationProvider } from './context/notification'
+import Footer from './components/Footer'
 
 function App () {
   return (
@@ -14,6 +15,7 @@ function App () {
           <div>
             <Outlet />
           </div>
+          <Footer />
         </NotificationProvider>
       </CartProvider>
     </>

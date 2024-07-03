@@ -44,7 +44,7 @@ export default function Navbar () {
         <div className='flex lg:flex-1'>
           <a href='/' className='-m-1.5 p-1.5'>
             <span className='sr-only'>JET Impresiones 3D</span>
-            <img className='h-14 w-auto' src='../../jetLogoLarge.png' alt='logo principal de JET impresiones 3D' />
+            <img className='h-16 w-auto' src='../../jetLogoLarge.png' alt='logo principal de JET impresiones 3D' />
           </a>
         </div>
         <div className='relative flex lg:hidden'>

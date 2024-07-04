@@ -8,7 +8,6 @@ import App from './App.jsx'
 import './index.css'
 import ErrorPage from './components/ErrorPage.jsx'
 import ProductReview from './components/ProductReview.jsx'
-import Products from './components/Products'
 import ShopingCart from './components/shopingCart/ShopingCart.jsx'
 import Delivery from './components/delivery/Delivery.jsx'
 import { products as initialProducts } from './mocks/products.json'
@@ -17,6 +16,7 @@ import PrintWithUs from './components/PrintWithUs.jsx'
 import AboutUs from './components/AboutUs.jsx'
 import Confirmation from './components/orderConfirmation/Confirmation.jsx'
 import TransferConfirmation from './components/orderConfirmation/TransferConfirmation.jsx'
+import Home from './components/Home.jsx'
 
 const router = createBrowserRouter([
   {
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <Products products={initialProducts} />
+        element: <Home products={initialProducts} />
       },
       {
         path: 'shoping-cart',

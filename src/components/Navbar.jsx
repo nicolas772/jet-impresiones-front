@@ -151,7 +151,7 @@ export default function Navbar () {
             <a href='/' className='-m-1.5 p-1.5'>
               <span className='sr-only'>Jet Impresiones 3D</span>
               <img
-                className='h-14 w-auto'
+                className='h-16 w-auto'
                 src='../../jetLogoLarge.png'
                 alt='Logo de JET Impresiones 3D'
               />

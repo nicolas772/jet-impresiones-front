@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { CheckCircleIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline'
 import { toFormat } from '../../constants/format'
 import { ToastContainer, toast, Bounce } from 'react-toastify'
@@ -63,6 +64,9 @@ const item = {
 }
 
 export default function TransferConfirmation () {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   const copiarAlPortapapeles = () => {
     const datos = `
       Titular: ${datosTransferencia.titular}

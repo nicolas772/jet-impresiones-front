@@ -10,7 +10,7 @@ export default function Delivery () {
   }, [])
   return (
     <FormCheckoutProvider>
-      <section className='bg-white py-4 px-6 antialiased dark:bg-gray-900 md:py-6'>
+      <section className='fade-in bg-white py-4 px-6 antialiased dark:bg-gray-900 md:py-6'>
         <div className='mx-auto max-w-screen-xl px-4'>
           <h2 className='text-xl font-bold tracking-tight text-gray-600 uppercase'>
             Finalizar Compra

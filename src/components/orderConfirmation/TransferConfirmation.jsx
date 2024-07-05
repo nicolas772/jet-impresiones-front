@@ -104,7 +104,7 @@ export default function TransferConfirmation () {
       })
   }
   return (
-    <section className='bg-white py-2 px-6 antialiased'>
+    <section className='fade-in bg-white py-2 px-6 antialiased'>
       <div className='mx-auto max-w-screen-md'>
         <div className='flex flex-col items-center gap-3 pb-8 border-b'> {/* encabezado */}
           <CheckCircleIcon className='h-10 w-10 text-green-700' />

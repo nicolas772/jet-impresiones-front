@@ -8,7 +8,7 @@ export default function Confirmation () {
   }, [])
   const checkPay = true
   return (
-    <>
+    <div className='fade-in'>
       {
         checkPay
           ? (
@@ -18,6 +18,6 @@ export default function Confirmation () {
             <NegativeConfirmation />
             )
       }
-    </>
+    </div>
   )
 }

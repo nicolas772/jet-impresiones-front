@@ -31,7 +31,7 @@ export default function PrintWithUs () {
       {
       inForm
         ? (
-          <section className='bg-white dark:bg-gray-900'>
+          <section className='fade-in bg-white dark:bg-gray-900'>
             <div className='py-8 lg:py-10 px-4 mx-auto max-w-screen-md'>
               <h2 className='mb-4 text-3xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white'>¿Quieres imprimir con nosotros?</h2>
               <p className='mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-lg'>
@@ -62,7 +62,7 @@ export default function PrintWithUs () {
               errorForm
                 ? (
 
-                  <div className='flex flex-col items-center gap-3 pb-8 border-b'> {/* encabezado */}
+                  <div className='fade-in flex flex-col items-center gap-3 pb-8 border-b'> {/* encabezado */}
                     <XCircleIcon className='h-10 w-10 text-red-600' />
                     <div className='flex flex-col items-center text-center gap-2'>
                       <h1 className='text-2xl font-bold text-gray-900'>
@@ -80,7 +80,7 @@ export default function PrintWithUs () {
                   )
                 : (
 
-                  <div className='flex flex-col items-center gap-3 pb-8 border-b'> {/* encabezado */}
+                  <div className='fade-in flex flex-col items-center gap-3 pb-8 border-b'> {/* encabezado */}
                     <CheckCircleIcon className='h-10 w-10 text-green-700' />
                     <div className='flex flex-col items-center text-center gap-2'>
                       <h1 className='text-2xl font-bold text-gray-900'>

@@ -66,7 +66,7 @@ export default function ProductReview ({ products }) {
   }
 
   return (
-    <section className='py-8 bg-white md:py-8 dark:bg-gray-900 antialiased'>
+    <section className='fade-in py-8 bg-white md:py-8 dark:bg-gray-900 antialiased'>
       <div className='max-w-screen-xl px-4 mx-auto 2xl:px-0'>
         <div className='lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16'>
           <FeaturedImageGallery data={[product.thumbnail, ...product.images]} />

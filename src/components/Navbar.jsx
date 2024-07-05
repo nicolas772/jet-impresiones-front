@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 import { useState } from 'react'
 import {
   Dialog,
@@ -44,7 +45,7 @@ export default function Navbar () {
         <div className='flex lg:flex-1'>
           <a href='/' className='-m-1.5 p-1.5'>
             <span className='sr-only'>JET Impresiones 3D</span>
-            <img className='h-16 w-auto' src='../../jetLogoLarge.png' alt='logo principal de JET impresiones 3D' />
+            <img className='h-16 w-auto' src='../../jetLogoLarge.webp' alt='logo principal de JET impresiones 3D' />
           </a>
         </div>
         <div className='relative flex lg:hidden'>
@@ -124,11 +125,16 @@ export default function Navbar () {
           </a>
         </PopoverGroup>
         <div className='hidden lg:flex lg:flex-1 lg:justify-end gap-2'>
-          <a href='https://www.tiktok.com/@jet.impresiones.3' target='_blank' className='p-2 rounded-lg hover:bg-gray-200'>
-            <img src='/tik-tok.png' alt='logo de tik tok' className='w-6 ' />
-          </a>
           <a href='https://www.instagram.com/jet.impresiones3d/' target='_blank' className='p-2 rounded-lg hover:bg-gray-200'>
-            <img src='/instagram.png' alt='logo de instagram' className='w-6 ' />
+            <svg xmlns='http://www.w3.org/2000/svg' className='w-7' viewBox='0 0 48 48'>
+              <radialGradient id='yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1' cx='19.38' cy='42.035' r='44.899' gradientUnits='userSpaceOnUse'><stop offset='0' stopColor='#fd5' /><stop offset='.328' stopColor='#ff543f' /><stop offset='.348' stopColor='#fc5245' /><stop offset='.504' stopColor='#e64771' /><stop offset='.643' stopColor='#d53e91' /><stop offset='.761' stopColor='#cc39a4' /><stop offset='.841' stopColor='#c837ab' /></radialGradient><path fill='url(#yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1)' d='M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z' /><radialGradient id='yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2' cx='11.786' cy='5.54' r='29.813' gradientTransform='matrix(1 0 0 .6663 0 1.849)' gradientUnits='userSpaceOnUse'><stop offset='0' stopColor='#4168c9' /><stop offset='.999' stopColor='#4168c9' stopOpacity='0' /></radialGradient><path fill='url(#yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2)' d='M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z' /><path fill='#fff' d='M24,31c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,31,24,31z M24,19c-2.757,0-5,2.243-5,5	s2.243,5,5,5s5-2.243,5-5S26.757,19,24,19z' /><circle cx='31.5' cy='16.5' r='1.5' fill='#fff' /><path fill='#fff' d='M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12	C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z' />
+            </svg>
+          </a>
+          <a href='https://www.tiktok.com/@jet.impresiones.3' target='_blank' className='p-2 rounded-lg hover:bg-gray-200'>
+            <svg xmlns='http://www.w3.org/2000/svg' className='w-7' viewBox='0 0 50 50'>
+              <path d='M41,4H9C6.243,4,4,6.243,4,9v32c0,2.757,2.243,5,5,5h32c2.757,0,5-2.243,5-5V9C46,6.243,43.757,4,41,4z M37.006,22.323 c-0.227,0.021-0.457,0.035-0.69,0.035c-2.623,0-4.928-1.349-6.269-3.388c0,5.349,0,11.435,0,11.537c0,4.709-3.818,8.527-8.527,8.527 s-8.527-3.818-8.527-8.527s3.818-8.527,8.527-8.527c0.178,0,0.352,0.016,0.527,0.027v4.202c-0.175-0.021-0.347-0.053-0.527-0.053 c-2.404,0-4.352,1.948-4.352,4.352s1.948,4.352,4.352,4.352s4.527-1.894,4.527-4.298c0-0.095,0.042-19.594,0.042-19.594h4.016 c0.378,3.591,3.277,6.425,6.901,6.685V22.323z' />
+            </svg>
+
           </a>
 
           <a onClick={clearNotification} href='/shoping-cart' className='relative inline-flex p-2 text-sm font-medium text-center rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-400'>

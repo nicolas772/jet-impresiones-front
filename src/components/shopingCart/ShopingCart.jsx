@@ -16,7 +16,7 @@ export default function ShopingCart () {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
-    <section className='bg-white py-4 px-6 antialiased dark:bg-gray-900 md:py-6'>
+    <section className='fade-in bg-white py-4 px-6 antialiased dark:bg-gray-900 md:py-6'>
       <div className='mx-auto max-w-screen-xl px-4 2xl:px-0'>
         <h2 className='text-xl font-bold tracking-tight text-gray-600 uppercase dark:text-white'>
           Tu Carrito

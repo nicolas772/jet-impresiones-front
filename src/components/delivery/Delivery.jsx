@@ -16,7 +16,7 @@ export default function Delivery () {
             Finalizar Compra
           </h2>
         </div>
-        <div className='mt-6 px-4 mx-auto max-w-screen-2xl sm:mt-8 md:gap-6 lg:flex lg:items-start lg:justify-center xl:gap-8'>
+        <div className='mt-6 px-4 mx-auto max-w-screen-xl sm:mt-8 md:gap-6 lg:flex lg:items-start lg:justify-center xl:gap-8'>
           <div className='mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl'>
             <ShipmentForm />
           </div>

@@ -1,4 +1,5 @@
-import { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react'
 import { HeartAddIcon, ShoppingCartAdd01Icon } from 'hugeicons-react' //eslint-disable-line
 import { Radio, RadioGroup } from '@headlessui/react'
 import { FeaturedImageGallery } from './FeaturedImageGalery'
@@ -7,23 +8,49 @@ import { useParams } from 'react-router-dom'
 import { useNotification } from '../hooks/useNotification'
 import { colors as allColors } from '../constants/colors'
 import { toFormat } from '../constants/format'
+import ProductService from '../services/product.service'
+import Loader from './Loader'
 
 function classNames (...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function ProductReview ({ products }) {
+export default function ProductReview () {
   const { id } = useParams()
   const { addToCart } = useCart()
   const { addNotification } = useNotification()
-  const product = products.find(p => p.id === parseInt(id))
-  const colors = allColors.filter(({ name }) => product.colors.includes(name))
 
-  const hasDiscount = product.discountPercentage > 0
-  const finalPrice = product.price * (1 - product.discountPercentage / 100)
+  // const product = products.find(p => p.id === parseInt(id))
+  // const colors = allColors.filter(({ name }) => product.colors.includes(name))
+  // const hasDiscount = product.discountPercentage > 0
+  // const finalPrice = product.price * (1 - product.discountPercentage / 100)
 
-  const [selectedColor, setSelectedColor] = useState(colors[0])
+  const [product, setProduct] = useState({})
+  const [colors, setColors] = useState([])
+  const [hasDiscount, setHasDiscount] = useState(false)
+  const [finalPrice, setFinalPrice] = useState(0)
+  const [selectedColor, setSelectedColor] = useState()
   const [quantity, setQuantity] = useState(1)
+  const [loading1, setLoading1] = useState(true)
+
+  useEffect(() => {
+    ProductService.getProduct(id)
+      .then((response) => {
+        const actualProduct = response.data
+        const actualColors = allColors.filter(({ name }) => actualProduct.colors.includes(name))
+        setProduct(actualProduct)
+        setColors(actualColors)
+        setHasDiscount(actualProduct.discountPercentage > 0)
+        setFinalPrice(actualProduct.price * (1 - actualProduct.discountPercentage / 100))
+        setSelectedColor(actualColors[0])
+        setLoading1(false)
+      },
+      (error) => {
+        const _content = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+        setProduct(_content)
+      }
+      )
+  }, [])
 
   const handleDecrement = () => {
     setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1))
@@ -63,6 +90,10 @@ export default function ProductReview ({ products }) {
 
   if (!product) {
     return <div className='m-8'>Product not found</div>
+  }
+
+  if (loading1) {
+    return <Loader />
   }
 
   return (

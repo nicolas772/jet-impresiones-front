@@ -1,11 +1,10 @@
 import ProductCart from './ProductCart'
 import OrderSumary from './OrderSumary'
 import GiftCardBox from './GiftCardBox' // eslint-disable-line
-import ProductItem from '../ProductItem'
 import { useCart } from '../../hooks/useCart'
-import { products as popularProducts } from '../../mocks/popularProducts.json'
 import { useNotification } from '../../hooks/useNotification'
 import { useEffect } from 'react'
+import PopularProduct from './PopularProduct'
 
 export default function ShopingCart () {
   const { cart } = useCart()
@@ -31,18 +30,7 @@ export default function ShopingCart () {
                 <ProductCart key={`${product.id}-${product.selectedColor.name}`} item={product} />
               ))
             }
-            <div className='hidden xl:mt-8 xl:block'>
-              <h3 className='text-lg font-bold tracking-tight text-gray-600 uppercase'>Lo más vendido</h3>
-              <div className='mt-6 grid grid-cols-3 gap-4 sm:mt-8'>
-                {
-            popularProducts.map((product) => (
-              <div key={product.id}>
-                <ProductItem item={product} />
-              </div>
-            ))
-          }
-              </div>
-            </div>
+            <PopularProduct />
           </div>
 
           <div className='mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full'>

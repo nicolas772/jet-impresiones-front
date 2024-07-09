@@ -19,12 +19,6 @@ export default function ProductReview () {
   const { id } = useParams()
   const { addToCart } = useCart()
   const { addNotification } = useNotification()
-
-  // const product = products.find(p => p.id === parseInt(id))
-  // const colors = allColors.filter(({ name }) => product.colors.includes(name))
-  // const hasDiscount = product.discountPercentage > 0
-  // const finalPrice = product.price * (1 - product.discountPercentage / 100)
-
   const [product, setProduct] = useState({})
   const [colors, setColors] = useState([])
   const [hasDiscount, setHasDiscount] = useState(false)

@@ -1,0 +1,2 @@
+export const SHIP_PRICE = 4500
+export const TRANSFER_DISCOUNT_PERCENTAGE = 5

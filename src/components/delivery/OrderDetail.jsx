@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react'
 import { useCart } from '../../hooks/useCart'
 import { toFormat } from '../../constants/format'
 import { useFormCheckout } from '../../hooks/useFormCheckout'
-
-const SHIP_PRICE = 4500
-const TRANSFER_DISCOUNT_PERCENTAGE = 5
+import { SHIP_PRICE, TRANSFER_DISCOUNT_PERCENTAGE } from '../../constants/ship'
 
 export default function OrderDetail () {
   const { cart } = useCart()

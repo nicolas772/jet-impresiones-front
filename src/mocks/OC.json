@@ -1,0 +1,44 @@
+{
+  "orderDate": "2024-07-09",
+  "items": [
+    {
+      "productID": "ABC123",
+      "productName": "Widget",
+      "productColor": "Rojo",
+      "quantity": 2,
+      "unitPrice": 25.99,
+      "discountPercentage": 0,
+      "subtotal": 51.98
+    },
+    {
+      "productID": "XYZ789",
+      "productName": "Gadget",
+      "productColor": "Rojo",
+      "quantity": 1,
+      "unitPrice": 49.99,
+      "discountPercentage": 0,
+      "subtotal": 49.99
+    }
+  ],
+  "totalAmount": 101.97,
+  "transferDiscount": 10,
+  "ShippingPrice": 4500,
+  "shippingAddress": {
+    "calle": "Antonio Smith",
+    "numero": "4033",
+    "dpto": "",
+    "comuna": "Pedro Aguirre Cerda",
+    "region": "Metropolitana",
+    "ZIP": "290930",
+    "notes": "Customer requested expedited shipping."
+  },
+  "customerData": {
+    "name": "Nicolas",
+    "lastName": "Araya",
+    "mail": "narayaurrutia@gmail.com",
+    "phone": "986502140",
+    "RUT": "19842753-5"
+  },
+  "paymentMethod": "Credit Card",
+  "status": "Pending"
+}

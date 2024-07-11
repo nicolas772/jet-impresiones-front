@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useFormCheckout } from '../../hooks/useFormCheckout'
 import { regiones } from '../../mocks/regionesChile.json'
 
-const REGION_DEFAULT = '13' // REGION METROPOLITANA POR DEFECTO
+const REGION_DEFAULT = 'Metropolitana de Santiago' // REGION METROPOLITANA POR DEFECTO
 
 export default function ShipmentForm () {
   const { formData, handleInputChange, handleBlur, errors } = useFormCheckout()
   const [actualRegion, setActualRegion] = useState(REGION_DEFAULT) // region metropolitana por defecto
   const [actualCommunes, setActualComunnes] = useState(
-    regiones.find(region => region.number === REGION_DEFAULT).communes
+    regiones.find(region => region.name === REGION_DEFAULT).communes
   )
   const handleRegion = (event) => {
     setActualRegion(event.target.value)
@@ -17,7 +17,7 @@ export default function ShipmentForm () {
 
   useEffect(() => {
     setActualComunnes(
-      regiones.find(region => region.number === actualRegion).communes
+      regiones.find(region => region.name === actualRegion).communes
     )
   }, [actualRegion])
 
@@ -248,7 +248,7 @@ export default function ShipmentForm () {
                   <option value='' default>Selecciona una región</option>
                   {
                     regiones.map((region) => (
-                      <option key={region.number} value={region.number}>{region.name}</option>
+                      <option key={region.number} value={region.name}>{region.name}</option>
                     ))
                   }
 

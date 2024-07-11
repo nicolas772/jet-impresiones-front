@@ -1,61 +1,36 @@
+import { useEffect, useState } from 'react'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
 import { toFormat } from '../../constants/format'
+import OrderService from '../../services/orders.service'
+import Loader from '../Loader'
 
-const order = 2348793
-const datosEnvio = {
-  nombre: 'Nicolas',
-  apellido: 'Araya Urrutia',
-  calle: 'Antonio Smith',
-  numero: 4033,
-  depto: 'Población san joaquin',
-  comuna: 'Pedro Aguirre Cerda',
-  region: 'Región Metropolitana',
-  pais: 'Chile',
-  notas: 'dejar en conserjeria por favor'
-}
 const datosTarjeta = {
   tipo: 'Crédito',
   red: 'Visa',
   cardNumber: '**** 4660'
 }
-const discount = 400
-const SHIP_PRICE = 4500
 
-const item = {
-  id: 1,
-  title: 'Porta completo animales',
-  description: 'Porta completo impreso en 3D, en distinto tamaños y colores, ideal para regalo del dia del niño, dia del padre, etc.',
-  shortDescription: 'Excelente porta completo en variedad de colores',
-  price: 2000,
-  discountPercentage: 10,
-  rating: 4,
-  totalOpinions: 117,
-  stock: 94,
-  category: 'porta-completos',
-  thumbnail: {
-    src: '../../products/foto1.png',
-    alt: 'Two each of gray, white, and black shirts laying flat.'
-  },
-  images: [
-    {
-      src: '../../products/foto2.png',
-      alt: 'Model wearing plain black basic tee.'
-    },
-    {
-      src: '../../products/foto3.png',
-      alt: 'Model wearing plain gray basic tee.'
-    }
-  ],
-  colors: ['Rojo', 'Blanco'],
-  observations: [
-    'Medida: 21,7 x 13,8 cm.',
-    'Sujeto a disponibilidad.',
-    'Despacho entre 3 a 5 días.',
-    'El modelo 3D no se vende.'
-  ]
-}
+export default function PositiveConfirmation ({ orderID }) {
+  const [order, setOrder] = useState({})
+  const [loading, setLoading] = useState(true)
 
-export default function PositiveConfirmation () {
+  useEffect(() => {
+    OrderService.getOrder(orderID).then(
+      (response) => {
+        setOrder(response.data)
+        setLoading(false)
+      },
+      (error) => {
+        console.log(error)
+        setLoading(false)
+      }
+    )
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  if (loading) {
+    return <Loader />
+  }
   return (
     <section className='bg-white py-4 px-6 antialiased'>
       <div className='mx-auto max-w-screen-md'>
@@ -66,7 +41,7 @@ export default function PositiveConfirmation () {
               Hemos recibido tu pedido!
             </h1>
             <p className='text-md leading-6 text-gray-600'>
-              La orden #{order} está siendo procesada para el envío.
+              La orden #{orderID} está siendo procesada para el envío.
             </p>
             <p className='text-md leading-6 text-gray-600'>
               Puedes <a href='#' title='' className='inline-flex items-center gap-2 font-medium text-primary-700 underline hover:no-underline dark:text-primary-500'>descargar aquí</a> tu orden.
@@ -79,16 +54,16 @@ export default function PositiveConfirmation () {
               Datos de envío
             </h1>
             <div className='pt-6 pr-3 text-sm text-gray-900 flex flex-col gap-3'>
-              <p>{datosEnvio.nombre + ' ' + datosEnvio.apellido}</p>
-              <p>{datosEnvio.calle +
-              ' #' + datosEnvio.numero +
-              (datosEnvio.depto && (', ' + datosEnvio.depto)) +
-              ', ' + datosEnvio.comuna +
-              ', ' + datosEnvio.region +
-              ', ' + datosEnvio.pais + '.'}
+              <p>{order.customerData.firstName + ' ' + order.customerData.lastName}</p>
+              <p>{order.shippingAddress.streetAdress +
+              ' #' + order.shippingAddress.numberAdress +
+              (order.shippingAddress.apartment && (', ' + order.shippingAddress.apartment)) +
+              ', ' + order.shippingAddress.comuna +
+              ', ' + order.shippingAddress.region +
+              ', ' + order.shippingAddress.country + '.'}
               </p>
-              {datosEnvio.notas && (
-                <p><span className='font-semibold'>Nota: </span>{datosEnvio.notas}</p>
+              {order.shippingAddress.orderNotes && (
+                <p><span className='font-semibold'>Nota: </span>{order.shippingAddress.orderNotes}</p>
               )}
             </div>
           </div>
@@ -97,6 +72,7 @@ export default function PositiveConfirmation () {
               Información de pago
             </h1>
             <div className='pt-6 pr-3 text-sm text-gray-900 flex flex-col gap-1'>
+              <p>{order.payMethod}</p>
               <p>{datosTarjeta.tipo}</p>
               <p>{datosTarjeta.red}</p>
               <p>{datosTarjeta.cardNumber}</p>
@@ -110,36 +86,41 @@ export default function PositiveConfirmation () {
 
           <div className='pt-6 space-y-4'>
             <div className='space-y-3'>
-              <dl className='flex items-center justify-between gap-4'>
-                <dt className='flex items-center text-sm font-normal text-gray-800 dark:text-gray-400'>
-                  <img className='h-16 w-16 rounded-lg border' src={item.thumbnail.src} alt={item.thumbnail.alt} />
-                  <div className='px-4'>
-                    <h4>Producto 1</h4>
-                    <div className='flex gap-2 text-xs text-gray-500'>
-                      <span>Cantidad: 3</span>
-                      <span>Color: Rojo</span>
+              {order.items.map((item) => (
+                <dl key={`${item.id}-${item.selectedColor}`} className='flex items-center justify-between gap-4'>
+                  <dt className='flex items-center text-sm font-normal text-gray-800 dark:text-gray-400'>
+                    <img className='h-16 w-16 rounded-lg border' src={item.thumbnail.src} alt={item.thumbnail.alt} />
+                    <div className='px-4'>
+                      <h4>{item.title}</h4>
+                      <div className='flex gap-2 text-xs text-gray-500'>
+                        <span>Cantidad: {item.quantity}</span>
+                        <span>Color: {item.selectedColor}</span>
+                      </div>
                     </div>
-                  </div>
-                </dt>
-                <dd className='text-sm font-medium text-gray-900 dark:text-white'>{toFormat(10000)}</dd>
-              </dl>
+                  </dt>
+                  <dd className='text-sm font-medium text-gray-900 dark:text-white'>{toFormat(item.subtotal)}</dd>
+                </dl>
+              ))}
+
             </div>
             <div className='space-y-2 border-t pt-4'>
               <dl className='flex items-center justify-between gap-4'>
                 <dt className='text-sm font-normal text-gray-800 dark:text-gray-400'>Descuento Productos</dt>
-                <dd className='text-sm font-medium text-green-600'>-{discount === 0 ? '' : toFormat(discount)}</dd>
+                <dd className='text-sm font-medium text-green-600'>
+                  -{order.totalAmount === order.totalAmountNoDcto ? '' : toFormat(order.totalAmountNoDcto - order.totalAmount)}
+                </dd>
               </dl>
             </div>
             <div className='space-y-2 border-t pt-4'>
               <dl className='flex items-center justify-between gap-4'>
                 <dt className='text-sm font-normal text-gray-800 dark:text-gray-400'>Envío <span className='text-gray-500'>(precio fijo)</span></dt>
-                <dd className='text-sm font-medium text-gray-900 dark:text-white'>{toFormat(SHIP_PRICE)}</dd>
+                <dd className='text-sm font-medium text-gray-900 dark:text-white'>{toFormat(order.ShippingPrice)}</dd>
               </dl>
             </div>
 
             <dl className='flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700'>
               <dt className='text-sm font-bold text-gray-900 dark:text-white'>Precio Total</dt>
-              <dd className='text-base font-bold text-gray-900 dark:text-white'>{toFormat(8000)}</dd>
+              <dd className='text-base font-bold text-gray-900 dark:text-white'>{toFormat(order.totalAmount + order.ShippingPrice)}</dd>
             </dl>
 
           </div>

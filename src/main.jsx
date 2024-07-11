@@ -64,11 +64,11 @@ function Main () {
           element: <PrintWithUs />
         },
         {
-          path: 'order-confirmation',
+          path: 'order-confirmation/:orderID',
           element: <Confirmation />
         },
         {
-          path: 'transfer-confirmation',
+          path: 'transfer-confirmation/:orderID',
           element: <TransferConfirmation />
         },
         {

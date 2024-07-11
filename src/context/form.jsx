@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 import { PAY_METHODS } from '../constants/payMethods'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { validateRut, formatRut } from '@fdograph/rut-utilities'
 import { useCart } from '../hooks/useCart'
 import { SHIP_PRICE, TRANSFER_DISCOUNT_PERCENTAGE } from '../constants/ship'
@@ -24,7 +24,7 @@ export function FormCheckoutProvider ({ children }) {
   const [payMethod, setPayMethod] = useState(PAY_METHODS.KHIPU)
   const [errors, setErrors] = useState({})
   const { cart } = useCart()
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -99,15 +99,20 @@ export function FormCheckoutProvider ({ children }) {
 
   const createOCFormat = () => {
     const subtotalArr = []
-    const items = cart.map(({ id, title, selectedColor, quantity, price, discountPercentage }) => {
-      const subtotal = (price * quantity) * (1 - (discountPercentage / 100))
+    const subtotalNoDctoArr = []
+    const items = cart.map(({ id, title, selectedColor, quantity, price, discountPercentage, thumbnail }) => {
+      const subtotalNoDcto = price * quantity
+      const subtotal = subtotalNoDcto * (1 - (discountPercentage / 100))
       subtotalArr.push(subtotal)
+      subtotalNoDctoArr.push(subtotalNoDcto)
       return {
-        id, title, selectedColor: selectedColor.name, quantity, price, discountPercentage, subtotal
+        id, title, selectedColor: selectedColor.name, quantity, price, discountPercentage, subtotal, thumbnail
       }
     })
     const totalAmount = subtotalArr.reduce((prev, curr) => (prev + curr), 0)
+    const totalAmountNoDcto = subtotalNoDctoArr.reduce((prev, curr) => (prev + curr), 0)
     const transferDiscount = (payMethod === PAY_METHODS.TRANSFER) ? totalAmount * TRANSFER_DISCOUNT_PERCENTAGE / 100 : 0
+    const status = (payMethod === PAY_METHODS.TRANSFER) ? 'En espera transferencia' : 'Recibida'
     const customerData = {
       firstName: formData.firstName,
       lastName: formData.lastName,
@@ -127,11 +132,13 @@ export function FormCheckoutProvider ({ children }) {
     const newOC = {
       items,
       totalAmount,
+      totalAmountNoDcto,
       transferDiscount,
       ShippingPrice: SHIP_PRICE,
       shippingAddress,
       customerData,
-      payMethod
+      payMethod,
+      status
     }
     return newOC
   }
@@ -141,23 +148,23 @@ export function FormCheckoutProvider ({ children }) {
     if (handleValidation()) {
       const newOC = createOCFormat()
       if (payMethod === PAY_METHODS.TRANSFER) {
-        // navigate('/transfer-confirmation')
         OrderService.createOrder(newOC).then(
           (response) => {
-            console.log(response)
+            navigate(`/transfer-confirmation/${response.data}`)
           },
           (error) => {
             console.log(error)
+            navigate('/transfer-confirmation/error')
           }
         )
       } else {
-        // navigate('/order-confirmation')
         OrderService.createOrder(newOC).then(
           (response) => {
-            console.log(response.data)
+            navigate(`/order-confirmation/${response.data}`)
           },
           (error) => {
             console.log(error)
+            navigate('/order-confirmation/error')
           }
         )
       }

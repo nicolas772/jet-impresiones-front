@@ -6,8 +6,13 @@ const createOrder = (newOrder) => {
   return axios.post(API_URL + 'orders', newOrder)
 }
 
+const getOrder = (orderID) => {
+  return axios.get(API_URL + `orders/${orderID}`)
+}
+
 const OrderService = {
-  createOrder
+  createOrder,
+  getOrder
 }
 
 export default OrderService

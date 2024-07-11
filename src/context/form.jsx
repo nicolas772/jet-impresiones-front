@@ -22,6 +22,7 @@ export const FormCheckoutContext = createContext()
 
 export function FormCheckoutProvider ({ children }) {
   const [payMethod, setPayMethod] = useState(PAY_METHODS.KHIPU)
+  const [sending, setSending] = useState(false)
   const [errors, setErrors] = useState({})
   const { cart } = useCart()
   const navigate = useNavigate()
@@ -38,7 +39,8 @@ export function FormCheckoutProvider ({ children }) {
     region: '',
     comuna: '',
     postalCode: '',
-    orderNotes: ''
+    orderNotes: '',
+    country: 'Chile'
   })
 
   const handleInputChange = (e) => {
@@ -125,6 +127,7 @@ export function FormCheckoutProvider ({ children }) {
       numberAdress: formData.numberAdress,
       apartment: formData.apartment,
       region: formData.region,
+      country: formData.country,
       comuna: formData.comuna,
       postalCode: formData.postalCode,
       orderNotes: formData.orderNotes
@@ -170,6 +173,7 @@ export function FormCheckoutProvider ({ children }) {
       }
     } else {
       console.log('Formulario invalido, mostrar errores', errors)
+      setSending(false)
     }
   }
 
@@ -178,6 +182,8 @@ export function FormCheckoutProvider ({ children }) {
       value={{
         payMethod,
         setPayMethod,
+        sending,
+        setSending,
         isTransferencia: payMethod === PAY_METHODS.TRANSFER,
         handleInputChange,
         handleValidation,

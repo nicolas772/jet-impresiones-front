@@ -28,7 +28,6 @@ export default function TransferConfirmation () {
     OrderService.getOrder(orderID).then(
       (response) => {
         setOrder(response.data)
-        console.log(response.data)
         setLoading(false)
       },
       (error) => {

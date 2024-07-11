@@ -98,7 +98,7 @@ export default function PositiveConfirmation ({ orderID }) {
                       </div>
                     </div>
                   </dt>
-                  <dd className='text-sm font-medium text-gray-900 dark:text-white'>{toFormat(item.subtotal)}</dd>
+                  <dd className='text-sm font-medium text-gray-900 dark:text-white'>{toFormat(item.price * item.quantity)}</dd>
                 </dl>
               ))}
 

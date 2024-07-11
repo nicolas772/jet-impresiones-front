@@ -2,9 +2,10 @@
 import { useState, useEffect } from 'react'
 import { useFormCheckout } from '../../hooks/useFormCheckout'
 import { PAY_METHODS } from '../../constants/payMethods'
+import Loader from '../Loader'
 
 export default function PayMethod () {
-  const { payMethod, setPayMethod, handleSubmit } = useFormCheckout()
+  const { payMethod, setPayMethod, handleSubmit, sending, setSending } = useFormCheckout()
   const [checkTermsAndConditions, setCheckTermsAndConditions] = useState(false)
 
   useEffect(() => {
@@ -18,6 +19,11 @@ export default function PayMethod () {
 
   const handleCheckbox = () => {
     setCheckTermsAndConditions(prevState => !prevState)
+  }
+
+  const handlePay = (event) => {
+    setSending(true)
+    handleSubmit(event)
   }
 
   return (
@@ -85,14 +91,22 @@ export default function PayMethod () {
       </div>
 
       <div className='space-y-4'>
-        <button
-          onClick={handleSubmit}
-          className={`flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white 
+        {
+          sending
+            ? (
+              <Loader />
+              )
+            : (
+              <button
+                onClick={handlePay}
+                className={`flex w-full items-center justify-center rounded-lg px-5 py-2.5 text-sm font-medium text-white 
           ${!checkTermsAndConditions ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300'}`}
-          disabled={!checkTermsAndConditions}
-        >
-          <p>Ir a Pagar</p>
-        </button>
+                disabled={!checkTermsAndConditions}
+              >
+                <p>Ir a Pagar</p>
+              </button>
+              )
+        }
 
         <div className='flex items-center justify-center gap-2'>
           <span className='text-sm font-normal text-gray-500 dark:text-gray-400'> o puedes </span>

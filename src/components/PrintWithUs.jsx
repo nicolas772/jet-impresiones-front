@@ -1,25 +1,38 @@
 import { useState, useEffect } from 'react'
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline'
+import PrintWithUsService from '../services/printWithUs.service'
+import Loader from './Loader'
 
 export default function PrintWithUs () {
   const [inForm, setInForm] = useState(true)
   const [errorForm, setErrorForm] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const form = event.target
     if (form.checkValidity()) {
+      setLoading(true)
       const formData = new FormData(form)
-      const email = formData.get('email')
+      const senderEmail = formData.get('email')
       const subject = formData.get('subject')
       const message = formData.get('message')
-      console.log({ email, subject, message })
-      setInForm(false)
-      setErrorForm(false)
+      try {
+        await PrintWithUsService.sendEmail({ senderEmail, subject, message })
+        setLoading(false)
+        setErrorForm(false)
+        setInForm(false)
+      } catch (error) {
+        console.log(error)
+        setLoading(false)
+        setErrorForm(true)
+        setInForm(false)
+      }
+
       window.scrollTo(0, 0)
     } else {
       form.reportValidity()
@@ -50,7 +63,16 @@ export default function PrintWithUs () {
                   <label htmlFor='message' className='block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400'>Mensaje</label>
                   <textarea id='message' name='message' rows='6' className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500' placeholder='Compartenos tu idea...' />
                 </div>
-                <button type='submit' className='py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'>Enviar mensaje</button>
+                {
+                  loading
+                    ? (
+                      <Loader />
+                      )
+                    : (
+                      <button type='submit' className='py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'>Enviar mensaje</button>
+                      )
+                }
+
               </form>
             </div>
           </section>

@@ -111,9 +111,10 @@ export function FormCheckoutProvider ({ children }) {
         id, title, selectedColor: selectedColor.name, quantity, price, discountPercentage, subtotal, thumbnail
       }
     })
-    const totalAmount = subtotalArr.reduce((prev, curr) => (prev + curr), 0)
+    let totalAmount = subtotalArr.reduce((prev, curr) => (prev + curr), 0)
     const totalAmountNoDcto = subtotalNoDctoArr.reduce((prev, curr) => (prev + curr), 0)
     const transferDiscount = (payMethod === PAY_METHODS.TRANSFER) ? totalAmount * TRANSFER_DISCOUNT_PERCENTAGE / 100 : 0
+    totalAmount -= transferDiscount
     const status = (payMethod === PAY_METHODS.TRANSFER) ? 'En espera transferencia' : 'Recibida'
     const customerData = {
       firstName: formData.firstName,
@@ -146,33 +147,31 @@ export function FormCheckoutProvider ({ children }) {
     return newOC
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+
     if (handleValidation()) {
       const newOC = createOCFormat()
-      if (payMethod === PAY_METHODS.TRANSFER) {
-        OrderService.createOrder(newOC).then(
-          (response) => {
-            navigate(`/transfer-confirmation/${response.data}`)
-          },
-          (error) => {
-            console.log(error)
-            navigate('/transfer-confirmation/error')
-          }
-        )
-      } else {
-        OrderService.createOrder(newOC).then(
-          (response) => {
-            navigate(`/order-confirmation/${response.data}`)
-          },
-          (error) => {
-            console.log(error)
-            navigate('/order-confirmation/error')
-          }
-        )
+      try {
+        const response = await OrderService.createOrder(newOC)
+        const data = response.data
+        await OrderService.sendEmailToJET(data)
+        await OrderService.sendEmailToCustomer(data)
+        if (payMethod === PAY_METHODS.TRANSFER) {
+          navigate(`/transfer-confirmation/${data.id}`)
+        } else {
+          navigate(`/order-confirmation/${data.id}`)
+        }
+      } catch (error) {
+        console.error(error)
+        if (payMethod === PAY_METHODS.TRANSFER) {
+          navigate('/transfer-confirmation/error')
+        } else {
+          navigate('/order-confirmation/error')
+        }
       }
     } else {
-      console.log('Formulario invalido, mostrar errores', errors)
+      console.log('Formulario inválido, mostrar errores', errors)
       setSending(false)
     }
   }

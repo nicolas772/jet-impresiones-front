@@ -6,6 +6,7 @@ import { ToastContainer, toast, Bounce } from 'react-toastify'
 import OrderService from '../../services/orders.service'
 import Loader from '../Loader'
 import 'react-toastify/dist/ReactToastify.css'
+import NegativeConfirmation from './NegativeConfirmation'
 
 const datosTransferencia = {
   titular: 'JET Impresiones 3D SPA',
@@ -20,6 +21,7 @@ const datosTransferencia = {
 
 export default function TransferConfirmation () {
   const { orderID } = useParams()
+  const checkPay = orderID !== 'error'
   const [order, setOrder] = useState({})
   const [loading, setLoading] = useState(true)
 
@@ -76,6 +78,9 @@ export default function TransferConfirmation () {
   }
   if (loading) {
     return <Loader />
+  }
+  if (!checkPay) {
+    return <NegativeConfirmation />
   }
   return (
     <section className='fade-in bg-white py-2 px-6 antialiased'>
@@ -193,7 +198,7 @@ export default function TransferConfirmation () {
 
             <dl className='flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700'>
               <dt className='text-sm font-bold text-gray-900 dark:text-white'>Precio Total</dt>
-              <dd className='text-base font-bold text-gray-900 dark:text-white'>{toFormat(order.totalAmount - order.transferDiscount + order.ShippingPrice)}</dd>
+              <dd className='text-base font-bold text-gray-900 dark:text-white'>{toFormat(order.totalAmount + order.ShippingPrice)}</dd>
             </dl>
 
           </div>

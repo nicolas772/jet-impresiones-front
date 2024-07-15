@@ -20,6 +20,7 @@ import Confirmation from './components/orderConfirmation/Confirmation.jsx'
 import TransferConfirmation from './components/orderConfirmation/TransferConfirmation.jsx'
 import Home from './components/Home.jsx'
 import ProductService from './services/product.service.js'
+import PaymentVerification from './components/orderConfirmation/PaymentVerification.jsx'
 // import Loader from './components/Loader.jsx'
 
 function Main () {
@@ -80,6 +81,11 @@ function Main () {
           element: <ProductReview />
         }
       ]
+    },
+    {
+      path: '/payment-verification/:orderID',
+      element: <PaymentVerification />,
+      errorElement: <ErrorPage />
     }
   ])
   return <RouterProvider router={router} />

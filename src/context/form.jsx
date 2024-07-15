@@ -5,6 +5,7 @@ import { validateRut, formatRut } from '@fdograph/rut-utilities'
 import { useCart } from '../hooks/useCart'
 import { SHIP_PRICE, TRANSFER_DISCOUNT_PERCENTAGE } from '../constants/ship'
 import OrderService from '../services/orders.service'
+import KhipuService from '../services/khipu.service'
 
 const REQUIRED_FIELDS = [
   'firstName',
@@ -17,6 +18,12 @@ const REQUIRED_FIELDS = [
   'comuna',
   'postalCode'
 ]
+
+const savePaymentId = (orderId, paymentId) => {
+  const payments = JSON.parse(localStorage.getItem('payments')) || {}
+  payments[orderId] = paymentId
+  localStorage.setItem('payments', JSON.stringify(payments))
+}
 
 export const FormCheckoutContext = createContext()
 
@@ -154,13 +161,31 @@ export function FormCheckoutProvider ({ children }) {
       const newOC = createOCFormat()
       try {
         const response = await OrderService.createOrder(newOC)
-        const data = response.data
-        await OrderService.sendEmailToJET(data)
-        await OrderService.sendEmailToCustomer(data)
+        const newOCwithID = response.data // es lo mismo que newOC, pero con el id de OC
+        /* await OrderService.sendEmailToJET(newOCwithID)
+        await OrderService.sendEmailToCustomer(newOCwithID) */
         if (payMethod === PAY_METHODS.TRANSFER) {
-          navigate(`/transfer-confirmation/${data.id}`)
+          navigate(`/transfer-confirmation/${newOCwithID.id}`)
         } else {
-          navigate(`/order-confirmation/${data.id}`)
+          // navigate(`/order-confirmation/${newOCwithID.id}`)
+          const totalWithShipping = newOCwithID.totalAmount + newOCwithID.ShippingPrice
+          const currency = 'CLP'
+          const subject = `pago de prueba orderID: ${newOCwithID.id}`
+          const returnUrl = `http://localhost:5173/payment-verification/${newOCwithID.id}`
+          const errorUrl = 'http://localhost:5173/order-confirmation/error'
+          const khipuResponse = await KhipuService.createPayment(
+            totalWithShipping,
+            currency,
+            subject,
+            newOCwithID.id,
+            returnUrl,
+            errorUrl
+          )
+          console.log(khipuResponse.data)
+          // eslint-disable-next-line camelcase
+          const { payment_id, payment_url } = khipuResponse.data
+          savePaymentId(newOCwithID.id, payment_id)
+          window.open(payment_url, '_blank')
         }
       } catch (error) {
         console.error(error)
@@ -196,3 +221,34 @@ export function FormCheckoutProvider ({ children }) {
     </FormCheckoutContext.Provider>
   )
 }
+
+/*
+const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if (handleValidation()) {
+      const newOC = createOCFormat()
+      try {
+        const response = await OrderService.createOrder(newOC)
+        const newOCwithID = response.data // es lo mismo que newOC, pero con el id de OC
+        await OrderService.sendEmailToJET(newOCwithID)
+        await OrderService.sendEmailToCustomer(newOCwithID)
+        if (payMethod === PAY_METHODS.TRANSFER) {
+          navigate(`/transfer-confirmation/${newOCwithID.id}`)
+        } else {
+          navigate(`/order-confirmation/${newOCwithID.id}`)
+        }
+      } catch (error) {
+        console.error(error)
+        if (payMethod === PAY_METHODS.TRANSFER) {
+          navigate('/transfer-confirmation/error')
+        } else {
+          navigate('/order-confirmation/error')
+        }
+      }
+    } else {
+      console.log('Formulario inválido, mostrar errores', errors)
+      setSending(false)
+    }
+  }
+*/

@@ -43,7 +43,7 @@ export default function PayMethod () {
             />
             <img src='https://s3.amazonaws.com/static.khipu.com/buttons/2024/200x75-color.svg' className='w-24 h-auto' />
           </div>
-          <div className='flex items-center gap-x-3'>
+          {/* <div className='flex items-center gap-x-3'>
             <input
               id='push-everything'
               name='push-notifications'
@@ -54,7 +54,7 @@ export default function PayMethod () {
               className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
             />
             <img src='./WebpayPlus.png' className='w-28 h-auto' />
-          </div>
+          </div> */}
           <div className='flex items-center gap-x-3'>
             <input
               id='push-nothing'

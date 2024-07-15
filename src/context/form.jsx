@@ -181,11 +181,11 @@ export function FormCheckoutProvider ({ children }) {
             returnUrl,
             errorUrl
           )
-          console.log(khipuResponse.data)
           // eslint-disable-next-line camelcase
           const { payment_id, payment_url } = khipuResponse.data
           savePaymentId(newOCwithID.id, payment_id)
-          window.open(payment_url, '_blank')
+          // eslint-disable-next-line camelcase
+          window.location.href = payment_url
         }
       } catch (error) {
         console.error(error)

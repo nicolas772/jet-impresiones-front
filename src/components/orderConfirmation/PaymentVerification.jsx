@@ -31,11 +31,9 @@ export default function PaymentVerification () {
       const storedPaymentId = getPaymentId(orderID)
       if (storedPaymentId) {
         setPaymentId(storedPaymentId)
-
-        // Llama a la API de Khipu para verificar el estado del pago inicialmente
         fetchPaymentStatus(storedPaymentId)
 
-        // Configura el intervalo para verificar el estado del pago cada 10 segundos
+        // Llamada a API cada 10 segundos, cambiar en un futuro a Web service
         const intervalId = setInterval(() => {
           fetchPaymentStatus(storedPaymentId)
         }, 10000)

@@ -155,28 +155,6 @@ export default function TransferConfirmation () {
               <p className='col-span-2'>{datosTransferencia.mensaje + orderID}</p>
 
             </div>
-            {/* <div className='pt-6 pr-3 text-sm text-gray-900 flex flex-row gap-1'>
-              <div className='flex-initial w-32'>
-                <p>Titular:</p>
-                <p>Banco:</p>
-                <p>Tipo de Cuenta:</p>
-                <p>N° Cuenta:</p>
-                <p>RUT:</p>
-                <p>Correo:</p>
-                <p>Mensaje:</p>
-                <p>Monto:</p>
-              </div>
-              <div className='flex-auto'>
-                <p>{datosTransferencia.titular}</p>
-                <p>{datosTransferencia.banco}</p>
-                <p>{datosTransferencia.tipoCuenta}</p>
-                <p>{datosTransferencia.numeroCuenta}</p>
-                <p>{datosTransferencia.rut}</p>
-                <p>{datosTransferencia.correo}</p>
-                <p>{datosTransferencia.mensaje + orderID}</p>
-                <p>{toFormat(datosTransferencia.monto)}</p>
-              </div>
-            </div> */}
           </div>
           <div className='flex-1 pt-10 sm:pt-0'>
             <h1 className='text-sm font-bold text-gray-500 uppercase font-roboto'>

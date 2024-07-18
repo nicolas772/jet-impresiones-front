@@ -8,21 +8,21 @@ import Loader from '../Loader'
 import 'react-toastify/dist/ReactToastify.css'
 import NegativeConfirmation from './NegativeConfirmation'
 
-const datosTransferencia = {
+const transferData = {
   titular: 'JET Impresiones 3D SPA',
-  banco: 'Banco Estado',
-  tipoCuenta: 'Cuenta Vista',
-  numeroCuenta: 19842753,
-  rut: '19.842.753-5',
-  correo: 'narayaurrutia@gmail.com',
-  mensaje: 'Orden n° 123948',
-  monto: 19840
+  banco: 'Banco de Chile',
+  tipoCuenta: 'Cuenta Corriente',
+  numeroCuenta: '00-154-14967-05',
+  rut: '19.992.358-7',
+  correo: 'jet.impresiones3d@gmail.com'
 }
 
 export default function TransferConfirmation () {
   const { orderID } = useParams()
   const checkPay = orderID !== 'error'
   const [order, setOrder] = useState({})
+  const [datosTransferencia, setDatosTransferencia] = useState({})
+  const [dataToCopy, setDataToCopy] = useState('')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -30,6 +30,23 @@ export default function TransferConfirmation () {
     OrderService.getOrder(orderID).then(
       (response) => {
         setOrder(response.data)
+        const newTransferData = {
+          ...transferData,
+          mensaje: `Orden n° ${orderID}`,
+          monto: response.data.totalAmount + response.data.ShippingPrice
+        }
+        setDatosTransferencia(newTransferData)
+        const datosToCopy = `
+          Titular: ${newTransferData.titular}
+          Banco: ${newTransferData.banco}
+          Tipo de Cuenta: ${newTransferData.tipoCuenta}
+          N° Cuenta: ${newTransferData.numeroCuenta}
+          RUT: ${newTransferData.rut}
+          Correo: ${newTransferData.correo}
+          Mensaje: ${newTransferData.mensaje + orderID}
+          Monto: ${newTransferData.monto}
+        `
+        setDataToCopy(datosToCopy)
         setLoading(false)
       },
       (error) => {
@@ -41,17 +58,17 @@ export default function TransferConfirmation () {
   }, [])
 
   const copiarAlPortapapeles = () => {
-    const datos = `
+    /* const datos = `
       Titular: ${datosTransferencia.titular}
       Banco: ${datosTransferencia.banco}
       Tipo de Cuenta: ${datosTransferencia.tipoCuenta}
       N° Cuenta: ${datosTransferencia.numeroCuenta}
       RUT: ${datosTransferencia.rut}
       Correo: ${datosTransferencia.correo}
-      Mensaje: ${datosTransferencia.mensaje}
+      Mensaje: ${datosTransferencia.mensaje + orderID}
       Monto: ${datosTransferencia.monto}
-    `
-    navigator.clipboard.writeText(datos)
+    ` */
+    navigator.clipboard.writeText(dataToCopy)
       .then(() => {
         toast.info('Datos copiados al portapapeles.', {
           position: 'top-right',
@@ -111,7 +128,34 @@ export default function TransferConfirmation () {
                 Datos de transferencia
               </h1>
             </div>
-            <div className='pt-6 pr-3 text-sm text-gray-900 flex flex-row gap-1'>
+            <div className='grid grid-cols-3 pt-6 pr-3 text-sm text-gray-900'>
+
+              <p>Titular:</p>
+              <p className='col-span-2'>{datosTransferencia.titular}</p>
+
+              <p>Banco:</p>
+              <p className='col-span-2'>{datosTransferencia.banco}</p>
+
+              <p>Tipo de Cuenta:</p>
+              <p className='col-span-2'>{datosTransferencia.tipoCuenta}</p>
+
+              <p>N° Cuenta:</p>
+              <p className='col-span-2'>{datosTransferencia.numeroCuenta}</p>
+
+              <p>RUT:</p>
+              <p className='col-span-2'>{datosTransferencia.rut}</p>
+
+              <p>Correo:</p>
+              <p className='col-span-2'>{datosTransferencia.correo}</p>
+
+              <p>Monto:</p>
+              <p className='col-span-2'>{toFormat(datosTransferencia.monto)}</p>
+
+              <p>Mensaje:</p>
+              <p className='col-span-2'>{datosTransferencia.mensaje + orderID}</p>
+
+            </div>
+            {/* <div className='pt-6 pr-3 text-sm text-gray-900 flex flex-row gap-1'>
               <div className='flex-initial w-32'>
                 <p>Titular:</p>
                 <p>Banco:</p>
@@ -129,10 +173,10 @@ export default function TransferConfirmation () {
                 <p>{datosTransferencia.numeroCuenta}</p>
                 <p>{datosTransferencia.rut}</p>
                 <p>{datosTransferencia.correo}</p>
-                <p>{datosTransferencia.mensaje}</p>
+                <p>{datosTransferencia.mensaje + orderID}</p>
                 <p>{toFormat(datosTransferencia.monto)}</p>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className='flex-1 pt-10 sm:pt-0'>
             <h1 className='text-sm font-bold text-gray-500 uppercase font-roboto'>

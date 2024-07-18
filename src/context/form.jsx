@@ -123,6 +123,7 @@ export function FormCheckoutProvider ({ children }) {
     const transferDiscount = (payMethod === PAY_METHODS.TRANSFER) ? totalAmount * TRANSFER_DISCOUNT_PERCENTAGE / 100 : 0
     totalAmount -= transferDiscount
     const status = (payMethod === PAY_METHODS.TRANSFER) ? 'En espera transferencia' : 'Recibida'
+    const mailSended = false
     const customerData = {
       firstName: formData.firstName,
       lastName: formData.lastName,
@@ -149,7 +150,8 @@ export function FormCheckoutProvider ({ children }) {
       shippingAddress,
       customerData,
       payMethod,
-      status
+      status,
+      mailSended
     }
     return newOC
   }
@@ -166,11 +168,10 @@ export function FormCheckoutProvider ({ children }) {
         await OrderService.sendEmailToCustomer(newOCwithID) */
         if (payMethod === PAY_METHODS.TRANSFER) {
           navigate(`/transfer-confirmation/${newOCwithID.id}`)
-        } else {
-          // navigate(`/order-confirmation/${newOCwithID.id}`)
+        } else if (payMethod === PAY_METHODS.KHIPU) {
           const totalWithShipping = newOCwithID.totalAmount + newOCwithID.ShippingPrice
           const currency = 'CLP'
-          const subject = `pago de prueba orderID: ${newOCwithID.id}`
+          const subject = `Pago Orden n° ${newOCwithID.id}`
           const returnUrl = `http://localhost:5173/payment-verification/${newOCwithID.id}`
           const errorUrl = 'http://localhost:5173/order-confirmation/error'
           const khipuResponse = await KhipuService.createPayment(

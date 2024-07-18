@@ -18,6 +18,7 @@ export default function PositiveConfirmation ({ orderID }) {
     OrderService.getOrder(orderID).then(
       (response) => {
         setOrder(response.data)
+        // AQUII!!!!! REVISAR CAMPO emailSended y enviar correo si es falso
         setLoading(false)
       },
       (error) => {

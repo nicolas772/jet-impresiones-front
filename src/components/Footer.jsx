@@ -81,7 +81,7 @@ export default function Footer () {
               </svg>
             </a>
             <a
-              href='https://www.tiktok.com/@jet.impresiones.3'
+              href='https://www.tiktok.com/@jet.impresiones3d'
               target='_blank'
               className='text-gray-500 transition-colors duration-300 hover:text-gray-900'
             >

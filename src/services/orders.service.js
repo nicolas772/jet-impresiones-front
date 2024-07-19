@@ -10,19 +10,14 @@ const getOrder = (orderID) => {
   return axios.get(API_URL + `orders/${orderID}`)
 }
 
-const sendEmailToJET = (orderDetail) => {
-  return axios.post(API_URL + 'orders/mail/toJet', orderDetail)
-}
-
-const sendEmailToCustomer = (orderDetail) => {
-  return axios.post(API_URL + 'orders/mail/toCustomer', orderDetail)
+const sendEmail = (orderDetail) => {
+  return axios.post(API_URL + 'orders/mail', orderDetail)
 }
 
 const OrderService = {
   createOrder,
   getOrder,
-  sendEmailToJET,
-  sendEmailToCustomer
+  sendEmail
 }
 
 export default OrderService

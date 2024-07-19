@@ -164,8 +164,6 @@ export function FormCheckoutProvider ({ children }) {
       try {
         const response = await OrderService.createOrder(newOC)
         const newOCwithID = response.data // es lo mismo que newOC, pero con el id de OC
-        /* await OrderService.sendEmailToJET(newOCwithID)
-        await OrderService.sendEmailToCustomer(newOCwithID) */
         if (payMethod === PAY_METHODS.TRANSFER) {
           navigate(`/transfer-confirmation/${newOCwithID.id}`)
         } else if (payMethod === PAY_METHODS.KHIPU) {
@@ -222,34 +220,3 @@ export function FormCheckoutProvider ({ children }) {
     </FormCheckoutContext.Provider>
   )
 }
-
-/*
-const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    if (handleValidation()) {
-      const newOC = createOCFormat()
-      try {
-        const response = await OrderService.createOrder(newOC)
-        const newOCwithID = response.data // es lo mismo que newOC, pero con el id de OC
-        await OrderService.sendEmailToJET(newOCwithID)
-        await OrderService.sendEmailToCustomer(newOCwithID)
-        if (payMethod === PAY_METHODS.TRANSFER) {
-          navigate(`/transfer-confirmation/${newOCwithID.id}`)
-        } else {
-          navigate(`/order-confirmation/${newOCwithID.id}`)
-        }
-      } catch (error) {
-        console.error(error)
-        if (payMethod === PAY_METHODS.TRANSFER) {
-          navigate('/transfer-confirmation/error')
-        } else {
-          navigate('/order-confirmation/error')
-        }
-      }
-    } else {
-      console.log('Formulario inválido, mostrar errores', errors)
-      setSending(false)
-    }
-  }
-*/

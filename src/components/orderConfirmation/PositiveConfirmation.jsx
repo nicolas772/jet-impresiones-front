@@ -15,17 +15,22 @@ export default function PositiveConfirmation ({ orderID }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    OrderService.getOrder(orderID).then(
-      (response) => {
-        setOrder(response.data)
-        // AQUII!!!!! REVISAR CAMPO emailSended y enviar correo si es falso
+    const fetchData = async () => {
+      try {
+        const responseGetOrder = await OrderService.getOrder(orderID)
+        setOrder(responseGetOrder.data)
+        const actualOC = responseGetOrder.data
+        const mailSended = actualOC.mailSended
+        if (!mailSended) {
+          await OrderService.sendEmail(actualOC)
+        }
         setLoading(false)
-      },
-      (error) => {
-        console.log(error)
+      } catch (err) {
+        console.log(err)
         setLoading(false)
       }
-    )
+    }
+    fetchData()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

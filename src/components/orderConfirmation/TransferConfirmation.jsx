@@ -58,16 +58,6 @@ export default function TransferConfirmation () {
   }, [])
 
   const copiarAlPortapapeles = () => {
-    /* const datos = `
-      Titular: ${datosTransferencia.titular}
-      Banco: ${datosTransferencia.banco}
-      Tipo de Cuenta: ${datosTransferencia.tipoCuenta}
-      N° Cuenta: ${datosTransferencia.numeroCuenta}
-      RUT: ${datosTransferencia.rut}
-      Correo: ${datosTransferencia.correo}
-      Mensaje: ${datosTransferencia.mensaje + orderID}
-      Monto: ${datosTransferencia.monto}
-    ` */
     navigator.clipboard.writeText(dataToCopy)
       .then(() => {
         toast.info('Datos copiados al portapapeles.', {
@@ -128,7 +118,7 @@ export default function TransferConfirmation () {
                 Datos de transferencia
               </h1>
             </div>
-            <div className='grid grid-cols-3 pt-6 pr-3 text-sm text-gray-900'>
+            <div className='grid grid-cols-3 gap-1 pt-6 pr-3 text-sm text-gray-900'>
 
               <p>Titular:</p>
               <p className='col-span-2'>{datosTransferencia.titular}</p>

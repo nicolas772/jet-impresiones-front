@@ -151,7 +151,10 @@ export function FormCheckoutProvider ({ children }) {
       customerData,
       payMethod,
       status,
-      mailSended
+      mailSended,
+      bank: '',
+      bankAccountNumber: '',
+      fundsSource: ''
     }
     return newOC
   }

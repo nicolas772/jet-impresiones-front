@@ -4,12 +4,6 @@ import { toFormat } from '../../constants/format'
 import OrderService from '../../services/orders.service'
 import Loader from '../Loader'
 
-const datosTarjeta = {
-  tipo: 'Crédito',
-  red: 'Visa',
-  cardNumber: '**** 4660'
-}
-
 export default function PositiveConfirmation ({ orderID }) {
   const [order, setOrder] = useState({})
   const [loading, setLoading] = useState(true)
@@ -79,9 +73,9 @@ export default function PositiveConfirmation ({ orderID }) {
             </h1>
             <div className='pt-6 pr-3 text-sm text-gray-900 flex flex-col gap-1'>
               <p>{order.payMethod}</p>
-              <p>{datosTarjeta.tipo}</p>
-              <p>{datosTarjeta.red}</p>
-              <p>{datosTarjeta.cardNumber}</p>
+              <p>{order.bank}</p>
+              <p>{order.bankAccountNumber}</p>
+              <p>{order.fundsSource}</p>
             </div>
           </div>
         </div>

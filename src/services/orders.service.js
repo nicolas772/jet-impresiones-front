@@ -10,6 +10,10 @@ const getOrder = (orderID) => {
   return axios.get(API_URL + `orders/${orderID}`)
 }
 
+const updateOrder = (orderID, toUpdate) => {
+  return axios.put(API_URL + `orders/${orderID}`, toUpdate)
+}
+
 const sendEmail = (orderDetail) => {
   return axios.post(API_URL + 'orders/mail', orderDetail)
 }
@@ -17,7 +21,8 @@ const sendEmail = (orderDetail) => {
 const OrderService = {
   createOrder,
   getOrder,
-  sendEmail
+  sendEmail,
+  updateOrder
 }
 
 export default OrderService

@@ -3,10 +3,32 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import KhipuService from '../../services/khipu.service'
 import Loader from '../Loader'
+import OrderService from '../../services/orders.service'
 
 const getPaymentId = (orderId) => {
   const payments = JSON.parse(localStorage.getItem('payments')) || {}
   return payments[orderId]
+}
+
+const fundsSourceTraduction = (fundSource) => {
+  const traduction = {
+    debit: 'Débito',
+    prepaid: 'Prepago',
+    credit: 'Crédito',
+    'not-available': ''
+  }
+  if (fundSource === '') return 'Transferencia Bancaria'
+  return traduction[fundSource]
+}
+
+const transformAccountNumber = (n) => {
+  const digitsToShow = 4
+  if (n.length >= digitsToShow) {
+    const lastDigitsToShow = n.slice(-digitsToShow)
+    const asterisk = '*'.repeat(n.length - digitsToShow)
+    return (asterisk + ' ' + lastDigitsToShow)
+  }
+  return n
 }
 
 export default function PaymentVerification () {
@@ -18,6 +40,14 @@ export default function PaymentVerification () {
     try {
       const response = await KhipuService.getPaymentById(storedPaymentId)
       if (response.data.status === 'done') {
+        // eslint-disable-next-line camelcase
+        const { bank, bank_account_number, funds_source } = response.data
+        const toUpdate = {
+          bank,
+          bankAccountNumber: transformAccountNumber(bank_account_number),
+          fundsSource: fundsSourceTraduction(funds_source)
+        }
+        await OrderService.updateOrder(orderID, toUpdate)
         navigate(`/order-confirmation/${orderID}`)
         window.location.reload()
       }
@@ -35,7 +65,7 @@ export default function PaymentVerification () {
         // Llamada a API cada 10 segundos, cambiar en un futuro a Web service
         const intervalId = setInterval(() => {
           fetchPaymentStatus(storedPaymentId)
-        }, 5000)
+        }, 7000)
 
         // Limpia el intervalo cuando el componente se desmonte
         return () => clearInterval(intervalId)

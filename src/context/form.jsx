@@ -6,6 +6,7 @@ import { useCart } from '../hooks/useCart'
 import { SHIP_PRICE, TRANSFER_DISCOUNT_PERCENTAGE } from '../constants/ship'
 import OrderService from '../services/orders.service'
 import KhipuService from '../services/khipu.service'
+import { MAIN_URL } from '../constants/url'
 
 const REQUIRED_FIELDS = [
   'firstName',
@@ -173,8 +174,8 @@ export function FormCheckoutProvider ({ children }) {
           const totalWithShipping = newOCwithID.totalAmount + newOCwithID.ShippingPrice
           const currency = 'CLP'
           const subject = `Pago Orden n° ${newOCwithID.id}`
-          const returnUrl = `http://localhost:5173/payment-verification/${newOCwithID.id}`
-          const errorUrl = 'http://localhost:5173/order-confirmation/error'
+          const returnUrl = MAIN_URL + `/payment-verification/${newOCwithID.id}`
+          const errorUrl = MAIN_URL + '/order-confirmation/error'
           const khipuResponse = await KhipuService.createPayment(
             totalWithShipping,
             currency,

@@ -58,7 +58,7 @@ export default function PayMethod () {
             />
             <label htmlFor='khipu' className='block text-md leading-6 text-gray-900'>
               <img src='https://s3.amazonaws.com/static.khipu.com/buttons/2024/200x75-color.svg' className='w-24 h-auto' />
-              <p className='text-sm pl-2'>Monto máximo {toFormat(KHIPU_MAX_PRICE)}</p>
+              <p className='text-sm font-semibold pl-2'>Monto máximo {toFormat(KHIPU_MAX_PRICE)}</p>
             </label>
           </div>
           {/* <div className='flex items-center gap-x-3'>

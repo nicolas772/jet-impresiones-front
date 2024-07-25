@@ -18,11 +18,16 @@ const sendEmail = (orderDetail) => {
   return axios.post(API_URL + 'orders/mail', orderDetail)
 }
 
+const sendEmailTransfer = (orderDetail) => {
+  return axios.post(API_URL + 'orders/mail/transfer', orderDetail)
+}
+
 const OrderService = {
   createOrder,
   getOrder,
   sendEmail,
-  updateOrder
+  updateOrder,
+  sendEmailTransfer
 }
 
 export default OrderService

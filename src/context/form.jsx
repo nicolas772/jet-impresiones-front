@@ -8,6 +8,7 @@ import { SHIP_PRICE, TRANSFER_DISCOUNT_PERCENTAGE, KHIPU_MAX_PRICE } from '../co
 import OrderService from '../services/orders.service'
 import KhipuService from '../services/khipu.service'
 import { MAIN_URL } from '../constants/url'
+import { transferData } from '../constants/transferData'
 
 const REQUIRED_FIELDS = [
   'firstName',
@@ -168,6 +169,7 @@ export function FormCheckoutProvider ({ children }) {
       ShippingPrice: SHIP_PRICE,
       shippingAddress,
       customerData,
+      transferData,
       payMethod,
       status,
       mailSended,
@@ -187,6 +189,7 @@ export function FormCheckoutProvider ({ children }) {
         const response = await OrderService.createOrder(newOC)
         const newOCwithID = response.data // es lo mismo que newOC, pero con el id de OC
         if (payMethod === PAY_METHODS.TRANSFER) {
+          await OrderService.sendEmailTransfer(newOCwithID)
           navigate(`/transfer-confirmation/${newOCwithID.id}`)
         } else if (payMethod === PAY_METHODS.KHIPU) {
           const monto = newOCwithID.totalAmount + newOCwithID.ShippingPrice

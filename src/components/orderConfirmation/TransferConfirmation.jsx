@@ -7,15 +7,7 @@ import OrderService from '../../services/orders.service'
 import Loader from '../Loader'
 import 'react-toastify/dist/ReactToastify.css'
 import NegativeConfirmation from './NegativeConfirmation'
-
-const transferData = {
-  titular: 'JET Impresiones 3D SPA',
-  banco: 'Banco de Chile',
-  tipoCuenta: 'Cuenta Corriente',
-  numeroCuenta: '00-154-14967-05',
-  rut: '19.992.358-7',
-  correo: 'jet.impresiones3d@gmail.com'
-}
+import { transferData } from '../../constants/transferData'
 
 export default function TransferConfirmation () {
   const { orderID } = useParams()

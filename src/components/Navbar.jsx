@@ -216,7 +216,7 @@ export default function Navbar () {
                   target='_blank'
                   className='-mx-3 flex gap-2 items-center rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
                 >
-                  <img src='./instagram.png' alt='logo de tik tok' className='w-6 ' />
+                  <img src='/instagram.png' alt='logo de tik tok' className='w-6 ' />
                   Visitanos en Instagram
                 </a>
                 <a
@@ -224,7 +224,7 @@ export default function Navbar () {
                   target='_blank'
                   className='-mx-3 flex gap-2 items-center rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
                 >
-                  <img src='./tik-tok.png' alt='logo de tik tok' className='w-6 ' />
+                  <img src='/tik-tok.png' alt='logo de tik tok' className='w-6 ' />
                   Visitanos en Tik Tok
                 </a>
                 <div />

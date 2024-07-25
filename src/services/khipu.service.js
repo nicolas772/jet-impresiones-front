@@ -10,7 +10,7 @@ const headers = {
 }
 
 const createPayment = (monto, moneda, motivo, idTransaccion, urlRetorno, urlError) => {
-  const montoAux = 200
+  const montoAux = monto
   return axios.post(
     API_KHIPU_URL,
     {

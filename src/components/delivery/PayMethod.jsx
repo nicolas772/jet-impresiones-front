@@ -3,13 +3,15 @@ import { useState, useEffect } from 'react'
 import { useFormCheckout } from '../../hooks/useFormCheckout'
 import { PAY_METHODS } from '../../constants/payMethods'
 import Loader from '../Loader'
+import { KHIPU_MAX_PRICE } from '../../constants/ship'
+import { toFormat } from '../../constants/format'
 
 export default function PayMethod () {
-  const { payMethod, setPayMethod, handleSubmit, sending, setSending } = useFormCheckout()
+  const { payMethod, setPayMethod, handleSubmit, sending, setSending, khipuDisabled } = useFormCheckout()
   const [checkTermsAndConditions, setCheckTermsAndConditions] = useState(false)
 
   useEffect(() => {
-    setPayMethod(PAY_METHODS.KHIPU)
+    setPayMethod(PAY_METHODS.TRANSFER)
     // eslint-disable-next-line
   }, [])
 
@@ -31,17 +33,33 @@ export default function PayMethod () {
       <p className='text-lg font-semibold text-gray-900 dark:text-white'>Método de pago</p>
       <fieldset className='mb-8 mt-2'>
         <div className='mt-6 space-y-6'>
+          <div className='flex items-center gap-x-3'>
+            <input
+              id='transfer'
+              type='radio'
+              value={PAY_METHODS.TRANSFER}
+              onChange={handlePayMethodChange}
+              checked={payMethod === PAY_METHODS.TRANSFER}
+              className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
+            />
+            <label htmlFor='transfer' className='block text-md leading-6 text-gray-900'>
+              Transferencia Bancaria Directa <p className='text-sm font-semibold'>(5% de descuento)</p>
+            </label>
+          </div>
           <div className='flex items-center gap-x-1'>
             <input
-              id='push-everything'
-              name='push-notifications'
+              id='khipu'
               type='radio'
               value={PAY_METHODS.KHIPU}
               onChange={handlePayMethodChange}
-              checked={payMethod === PAY_METHODS.KHIPU}
               className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
+              disabled={khipuDisabled}
+              checked={payMethod === PAY_METHODS.KHIPU}
             />
-            <img src='https://s3.amazonaws.com/static.khipu.com/buttons/2024/200x75-color.svg' className='w-24 h-auto' />
+            <label htmlFor='khipu' className='block text-md leading-6 text-gray-900'>
+              <img src='https://s3.amazonaws.com/static.khipu.com/buttons/2024/200x75-color.svg' className='w-24 h-auto' />
+              <p className='text-sm pl-2'>Monto máximo {toFormat(KHIPU_MAX_PRICE)}</p>
+            </label>
           </div>
           {/* <div className='flex items-center gap-x-3'>
             <input
@@ -55,20 +73,7 @@ export default function PayMethod () {
             />
             <img src='./WebpayPlus.png' className='w-28 h-auto' />
           </div> */}
-          <div className='flex items-center gap-x-3'>
-            <input
-              id='push-nothing'
-              name='push-notifications'
-              type='radio'
-              value={PAY_METHODS.TRANSFER}
-              onChange={handlePayMethodChange}
-              checked={payMethod === PAY_METHODS.TRANSFER}
-              className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
-            />
-            <label htmlFor='push-nothing' className='block text-md leading-6 text-gray-900'>
-              Transferencia Bancaria Directa <p className='text-sm font-semibold'>(5% de descuento)</p>
-            </label>
-          </div>
+
         </div>
       </fieldset>
       <p className='text-sm text-gray-700'>

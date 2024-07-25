@@ -1,9 +1,10 @@
-import React, { createContext, useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { createContext, useState, useEffect } from 'react'
 import { PAY_METHODS } from '../constants/payMethods'
 import { useNavigate } from 'react-router-dom'
 import { validateRut, formatRut } from '@fdograph/rut-utilities'
 import { useCart } from '../hooks/useCart'
-import { SHIP_PRICE, TRANSFER_DISCOUNT_PERCENTAGE } from '../constants/ship'
+import { SHIP_PRICE, TRANSFER_DISCOUNT_PERCENTAGE, KHIPU_MAX_PRICE } from '../constants/ship'
 import OrderService from '../services/orders.service'
 import KhipuService from '../services/khipu.service'
 import { MAIN_URL } from '../constants/url'
@@ -29,11 +30,28 @@ const savePaymentId = (orderId, paymentId) => {
 export const FormCheckoutContext = createContext()
 
 export function FormCheckoutProvider ({ children }) {
-  const [payMethod, setPayMethod] = useState(PAY_METHODS.KHIPU)
+  const [payMethod, setPayMethod] = useState(PAY_METHODS.TRANSFER)
+  const [khipuDisabled, setKhipuDisabled] = useState(true)
   const [sending, setSending] = useState(false)
   const [errors, setErrors] = useState({})
   const { cart } = useCart()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const subtotal = cart.reduce((prev, curr) => {
+      const subtotalProduct = (curr.price * curr.quantity) * (1 - (curr.discountPercentage / 100))
+      return prev + subtotalProduct
+    }, 0)
+    const totalWithShip = subtotal + SHIP_PRICE
+    if (totalWithShip > KHIPU_MAX_PRICE) {
+      setKhipuDisabled(true)
+      setPayMethod(PAY_METHODS.TRANSFER)
+    } else {
+      (
+        setKhipuDisabled(false)
+      )
+    }
+  }, [])
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -217,7 +235,8 @@ export function FormCheckoutProvider ({ children }) {
         handleSubmit,
         handleBlur,
         errors,
-        formData
+        formData,
+        khipuDisabled
       }}
     >
       {children}

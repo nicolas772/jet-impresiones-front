@@ -171,13 +171,13 @@ export function FormCheckoutProvider ({ children }) {
         if (payMethod === PAY_METHODS.TRANSFER) {
           navigate(`/transfer-confirmation/${newOCwithID.id}`)
         } else if (payMethod === PAY_METHODS.KHIPU) {
-          const totalWithShipping = newOCwithID.totalAmount + newOCwithID.ShippingPrice
+          const monto = newOCwithID.totalAmount + newOCwithID.ShippingPrice
           const currency = 'CLP'
           const subject = `Pago Orden n° ${newOCwithID.id}`
           const returnUrl = MAIN_URL + `/payment-verification/${newOCwithID.id}`
           const errorUrl = MAIN_URL + '/order-confirmation/error'
           const khipuResponse = await KhipuService.createPayment(
-            totalWithShipping,
+            monto,
             currency,
             subject,
             newOCwithID.id,

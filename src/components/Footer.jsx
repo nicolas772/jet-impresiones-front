@@ -43,12 +43,12 @@ export default function Footer () {
           <div className='flex'>
             <p className='mr-1 text-gray-800'>Email:</p>
             <a
-              href='mailto:tiarevera11@gmail.com'
+              href='mailto:jet.impresiones3d@gmail.com'
               aria-label='Our email'
               title='Our email'
               className='transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800'
             >
-              tiarevera11@gmail.com
+              jet.impresiones3d@gmail.com
             </a>
           </div>
           {/* <div className='flex'>

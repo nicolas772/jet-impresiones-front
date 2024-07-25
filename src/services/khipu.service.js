@@ -1,15 +1,16 @@
 import axios from 'axios'
 
 const API_KHIPU_URL = import.meta.env.VITE_API_URL_KHIPU
-const API_KEY = import.meta.env.VITE_API_KEY_KHIPU
+// const API_KEY = import.meta.env.VITE_API_KEY_KHIPU
+const API_KEY_PROD = import.meta.env.VITE_API_KEY_KHIPU_PROD
 
 const headers = {
   'Content-Type': 'application/json',
-  'x-api-key': API_KEY
+  'x-api-key': API_KEY_PROD
 }
 
 const createPayment = (monto, moneda, motivo, idTransaccion, urlRetorno, urlError) => {
-  const montoAux = 2000
+  const montoAux = 200
   return axios.post(
     API_KHIPU_URL,
     {
